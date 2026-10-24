@@ -16,6 +16,7 @@
   --fuente-mono: 'JetBrains Mono', ui-monospace, monospace;
 
   --margen: max(80px, calc((100% - 1280px) / 2));
+  --suave: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 *,
@@ -56,7 +57,7 @@ img {
 
 .pagina {
   position: relative;
-  overflow: hidden;
+  overflow-x: clip;
   background: linear-gradient(
     180deg,
     #10323b 0%,
@@ -74,6 +75,13 @@ img {
   bottom: 0;
   left: 28px;
   width: 3px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* El hilo se va pintando a medida que se baja. */
+.hilo__progreso {
+  position: absolute;
+  inset: 0;
   background: linear-gradient(
     180deg,
     var(--celeste) 0%,
@@ -82,6 +90,7 @@ img {
     var(--durazno) 80%,
     var(--naranja) 100%
   );
+  clip-path: inset(0 0 calc((1 - var(--progreso, 1)) * 100%) 0);
 }
 
 .seccion {
@@ -166,17 +175,74 @@ img {
   background: var(--oscuro);
 }
 
-.foto__img--recorte {
+.velo {
   position: absolute;
-  max-width: none;
+  inset: 0;
+  overflow: hidden;
 }
 
-.foto__img--cubre {
+.foto img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.9s var(--suave);
+}
+
+.foto:hover img {
+  transform: scale(1.04);
+}
+
+/* Marca de Sirena AI */
+.marca-sirena {
+  position: relative;
+}
+
+.marca-sirena__velo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6%;
+  padding: 0 6%;
+  background: #f1f5f6;
+}
+
+.marca-sirena__ilustracion {
+  height: 100%;
+  aspect-ratio: 252 / 300;
+  transform: scale(1.04);
+  object-fit: cover;
+  mix-blend-mode: multiply;
+}
+
+.marca-sirena__nombre {
+  font-family: 'Lexend', var(--fuente-texto);
+  font-weight: 600;
+  color: #10323b;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.marca-sirena--grande {
+  width: 311px;
+  max-width: 100%;
+  height: 100px;
+}
+
+.marca-sirena--grande .marca-sirena__nombre {
+  font-size: 36px;
+}
+
+.marca-sirena--chica {
+  width: 280px;
+  max-width: 100%;
+  height: 90px;
+  flex-shrink: 0;
+}
+
+.marca-sirena--chica .marca-sirena__nombre {
+  font-size: 32px;
 }
 
 .proximamente {
@@ -199,6 +265,21 @@ img {
   font-size: 11px;
 }
 
+.proximamente__etiqueta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  letter-spacing: 0.08em;
+}
+
+.proximamente__punto {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: latido 2s ease-in-out infinite;
+}
+
 .proximamente__mas {
   font-size: 22px;
   line-height: 1;
@@ -212,11 +293,35 @@ img {
 /* ---------- 01 · Comienzo ---------- */
 
 .nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  padding-inline: var(--margen);
+  border-bottom: 1px solid transparent;
+  transition:
+    background-color 0.4s,
+    border-color 0.4s,
+    backdrop-filter 0.4s;
+}
+
+.nav__interior {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 24px;
   height: 100px;
+  transition: height 0.4s var(--suave);
+}
+
+.scrolleado .nav {
+  background: rgba(14, 17, 22, 0.55);
+  border-bottom-color: var(--linea);
+  backdrop-filter: blur(14px) saturate(1.3);
+  -webkit-backdrop-filter: blur(14px) saturate(1.3);
+}
+
+.scrolleado .nav__interior {
+  height: 68px;
 }
 
 .nav__marca {
@@ -232,7 +337,26 @@ img {
 }
 
 .nav__enlace {
+  position: relative;
   transition: color 0.2s;
+}
+
+.nav__enlace::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s var(--suave);
+}
+
+.nav__enlace:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
 }
 
 .nav__enlace:hover {
@@ -251,6 +375,7 @@ img {
 
 .nav__contacto:hover {
   border-color: var(--celeste);
+  background: rgba(46, 196, 214, 0.1);
 }
 
 .comienzo__cuerpo {
@@ -294,11 +419,18 @@ img {
   color: var(--oscuro);
   font-size: 16px;
   font-weight: 700;
-  transition: filter 0.2s;
+  transition:
+    filter 0.2s,
+    box-shadow 0.3s;
 }
 
 .boton:hover {
   filter: brightness(1.1);
+  box-shadow: 0 10px 30px -10px rgba(46, 196, 214, 0.6);
+}
+
+.boton:hover .boton__flecha {
+  transform: translateY(3px);
 }
 
 .boton__flecha {
@@ -306,6 +438,7 @@ img {
   font-weight: 400;
   font-size: 20px;
   line-height: 1;
+  transition: transform 0.3s var(--suave);
 }
 
 .comienzo__archivo {
@@ -313,12 +446,6 @@ img {
   flex-direction: column;
   gap: 16px;
   padding-top: 50px;
-}
-
-.foto--logo {
-  width: 311px;
-  max-width: 72%;
-  aspect-ratio: 311 / 100;
 }
 
 .foto--equipo-sirena {
@@ -342,7 +469,18 @@ img {
 }
 
 .recorrido__trayecto {
+  display: flex;
+  align-items: center;
+  flex: 0 1 230px;
   font-size: 16px;
+  color: var(--celeste);
+}
+
+.recorrido__linea {
+  flex: 1;
+  height: 1px;
+  background: currentColor;
+  transform-origin: left;
 }
 
 /* ---------- 02 · El salto ---------- */
@@ -419,12 +557,6 @@ img {
   align-items: center;
   gap: 32px;
   min-height: 145px;
-}
-
-.foto--logo-chico {
-  width: 280px;
-  flex-shrink: 0;
-  aspect-ratio: 280 / 90;
 }
 
 .salto__tema {
@@ -616,6 +748,10 @@ img {
   gap: 20px;
 }
 
+.basquet__titulo .renglon {
+  padding-bottom: 0.04em;
+}
+
 .basquet__titulo {
   font-size: clamp(72px, 11.11vw, 160px);
   font-weight: 800;
@@ -769,6 +905,15 @@ a.contacto__enlace:hover .contacto__flecha {
   transition: transform 0.2s;
 }
 
+.pie__volver {
+  color: var(--durazno);
+  transition: color 0.2s;
+}
+
+.pie__volver:hover {
+  color: var(--naranja);
+}
+
 .pie {
   display: flex;
   justify-content: space-between;
@@ -777,6 +922,152 @@ a.contacto__enlace:hover .contacto__flecha {
   padding-top: 32px;
   border-top: 1px solid var(--linea);
   font-size: 11px;
+}
+
+/* ---------- Animaciones ---------- */
+
+/* Renglones de los títulos: cada uno sube desde abajo, enmascarado. */
+.renglon {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.02em;
+}
+
+.renglon__texto {
+  display: block;
+}
+
+.rebote {
+  display: inline-block;
+  animation: rebote 1.8s ease-in-out infinite;
+}
+
+@keyframes rebote {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+@keyframes latido {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Estados iniciales: solo si el JS de animaciones está activo (clase .animado en <html>). */
+.animado [data-aparecer='subir'] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.9s var(--suave),
+    transform 0.9s var(--suave);
+  transition-delay: var(--retraso, 0ms);
+}
+
+.animado [data-aparecer='titulo'] .renglon__texto {
+  transform: translateY(105%);
+  transition: transform 1.1s var(--suave);
+  transition-delay: calc(var(--i) * 110ms);
+}
+
+.animado [data-aparecer='foto'] .velo {
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 1.2s var(--suave);
+  transition-delay: var(--retraso, 0ms);
+}
+
+.animado [data-aparecer='foto'] img {
+  transform: scale(1.18);
+  transition: transform 1.6s var(--suave);
+  transition-delay: var(--retraso, 0ms);
+}
+
+.animado [data-aparecer='linea'] {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1.4s var(--suave);
+  transition-delay: var(--retraso, 0ms);
+}
+
+.animado [data-aparecer='eje'] {
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 1.4s var(--suave) 0.2s;
+}
+
+.animado [data-aparecer='recorrido'] > * {
+  opacity: 0;
+  transition: opacity 0.8s var(--suave);
+}
+
+.animado [data-aparecer='recorrido'] > :nth-child(2) {
+  transition-delay: 0.15s;
+}
+.animado [data-aparecer='recorrido'] > :nth-child(3) {
+  transition-delay: 0.9s;
+}
+.animado [data-aparecer='recorrido'] > :nth-child(4) {
+  transition-delay: 1.1s;
+}
+
+.animado [data-aparecer='recorrido'] .recorrido__linea {
+  transform: scaleX(0);
+  transition: transform 1s var(--suave) 0.2s;
+}
+
+.animado [data-aparecer='subrayado'] {
+  opacity: 0;
+  border-bottom-color: transparent;
+  background: linear-gradient(var(--naranja), var(--naranja)) left bottom / 0% 2px no-repeat;
+  transition:
+    opacity 0.8s var(--suave),
+    background-size 1.2s var(--suave);
+  transition-delay: var(--retraso, 0ms);
+}
+
+/* Estados finales */
+.animado [data-aparecer].visible,
+.animado [data-aparecer='titulo'].visible .renglon__texto,
+.animado [data-aparecer='foto'].visible img,
+.animado [data-aparecer='recorrido'].visible > *,
+.animado [data-aparecer='recorrido'].visible .recorrido__linea {
+  opacity: 1;
+  transform: none;
+}
+
+.animado [data-aparecer='foto'].visible .velo {
+  clip-path: inset(0 0 0 0);
+}
+
+.animado [data-aparecer='subrayado'].visible {
+  background-size: 100% 2px;
+}
+
+/* Después de entrar, la foto vuelve a responder al hover sin retraso. */
+.animado [data-aparecer='foto'].visible:hover img {
+  transform: scale(1.04);
+  transition-delay: 0ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
 }
 
 /* ---------- Pantallas medianas y chicas ---------- */
@@ -858,10 +1149,6 @@ a.contacto__enlace:hover .contacto__flecha {
     flex-direction: column;
     align-items: flex-start;
     gap: 16px;
-  }
-
-  .foto--logo-chico {
-    max-width: 100%;
   }
 
   .nota {

@@ -14,4 +14,5 @@ Landing personal hecha a partir del diseño de Figma «De Sirena a la cancha · 
 - `src/estilos.css`: colores, tipografías y medidas del diseño.
 - `src/datos.js`: imágenes (ruta, texto alternativo y recorte) y el enlace de contacto (`CONTACTO`).
 - `public/imagenes/`: las fotos. La lista de archivos está en `public/imagenes/LEEME.md`.
+- `src/animaciones.js`: las animaciones al bajar. Cada elemento con `data-aparecer` entra cuando llega a la pantalla; los estilos de cada tipo (`subir`, `titulo`, `foto`, `linea`…) están al final de `src/estilos.css`. Con «reducir movimiento» activado en el sistema, la página se muestra sin animaciones.
 - Lo que todavía no tiene contenido se muestra como «Próximamente» (`src/componentes/Proximamente.jsx`).

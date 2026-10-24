@@ -1,23 +1,25 @@
+import Titulo from '../componentes/Titulo.jsx';
+import { retraso } from '../animaciones.js';
+
 export default function LoQueSoy() {
   return (
     <section className="seccion puente" id="lo-personal">
-      <hr className="separador" />
-      <p className="capitulo color-durazno">06 / UN POCO MÁS CERCA</p>
+      <hr className="separador" data-aparecer="linea" />
+      <p className="capitulo color-durazno" data-aparecer="subir">
+        06 / UN POCO MÁS CERCA
+      </p>
       <div className="puente__cuerpo">
-        <h2 className="titulo puente__titulo">
-          PERO NO TODO
-          <br />
-          LO MÍO PASA
-          <br />
-          <span className="color-durazno">POR UN PROYECTO.</span>
-        </h2>
+        <Titulo
+          className="puente__titulo"
+          lineas={['PERO NO TODO', 'LO MÍO PASA', <span className="color-durazno">POR UN PROYECTO.</span>]}
+        />
         <div className="puente__texto">
-          <p className="relato">
+          <p className="relato" data-aparecer="subir" style={retraso(300)}>
             Sirena cuenta una parte de mi historia. Si quiero mostrar un poco más de quién soy,
             también tengo que hablar de básquet.
           </p>
-          <a href="#basquet" className="mono puente__enlace color-durazno">
-            DE LA PANTALLA A LA CANCHA ↓
+          <a href="#basquet" className="mono puente__enlace" data-aparecer="subir" style={retraso(450)}>
+            DE LA PANTALLA A LA CANCHA <span className="rebote">↓</span>
           </a>
         </div>
       </div>
