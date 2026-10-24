@@ -1,0 +1,888 @@
+/* Landing personal «De Sirena a la cancha». Medidas tomadas del diseño de Figma (1440 px de ancho). */
+
+:root {
+  --texto: #f2f4f7;
+  --texto-suave: #b8c2c6;
+  --celeste: #2ec4d6;
+  --verde: #9ac7ba;
+  --arena: #c1b396;
+  --durazno: #e9a17d;
+  --naranja: #ff5a1f;
+  --oscuro: #0e1116;
+  --linea: rgba(255, 255, 255, 0.15);
+
+  --fuente-titulo: 'Roboto Condensed', 'Arial Narrow', sans-serif;
+  --fuente-texto: 'Space Grotesk', system-ui, sans-serif;
+  --fuente-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --margen: max(80px, calc((100% - 1280px) / 2));
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #10323b;
+  color: var(--texto);
+  font-family: var(--fuente-texto);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+p,
+figure {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+}
+
+/* ---------- Página ---------- */
+
+.pagina {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    #10323b 0%,
+    #122b32 23%,
+    #202e2c 43%,
+    #30302a 60%,
+    #35271f 76%,
+    #361c16 100%
+  );
+}
+
+.hilo {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 28px;
+  width: 3px;
+  background: linear-gradient(
+    180deg,
+    var(--celeste) 0%,
+    var(--verde) 33%,
+    var(--arena) 58%,
+    var(--durazno) 80%,
+    var(--naranja) 100%
+  );
+}
+
+.seccion {
+  position: relative;
+  padding-inline: var(--margen);
+}
+
+.separador {
+  height: 1px;
+  margin: 0;
+  border: 0;
+  background: var(--linea);
+}
+
+/* ---------- Tipografía común ---------- */
+
+.titulo {
+  font-family: var(--fuente-titulo);
+  font-weight: 700;
+  color: var(--texto);
+}
+
+.mono {
+  font-family: var(--fuente-mono);
+  font-size: 12px;
+  color: var(--texto-suave);
+}
+
+.capitulo {
+  font-family: var(--fuente-mono);
+  font-size: 12px;
+}
+
+.relato {
+  font-size: 19px;
+  line-height: 1.5;
+  color: var(--texto-suave);
+}
+
+.epigrafe {
+  font-family: var(--fuente-mono);
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--texto-suave);
+}
+
+.pendiente {
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.texto-11 {
+  font-size: 11px;
+}
+
+.texto-12 {
+  font-size: 12px;
+}
+
+.color-celeste {
+  color: var(--celeste);
+}
+.color-verde {
+  color: var(--verde);
+}
+.color-arena {
+  color: var(--arena);
+}
+.color-durazno {
+  color: var(--durazno);
+}
+.color-naranja {
+  color: var(--naranja);
+}
+
+/* ---------- Fotos y lugares reservados ---------- */
+
+.foto {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  background: var(--oscuro);
+}
+
+.foto__img--recorte {
+  position: absolute;
+  max-width: none;
+}
+
+.foto__img--cubre {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.proximamente {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  padding: 24px;
+  border: 1px dashed var(--linea);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--texto-suave);
+}
+
+.proximamente__estado {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-family: var(--fuente-mono);
+  font-size: 11px;
+}
+
+.proximamente__mas {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.proximamente__texto {
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+/* ---------- 01 · Comienzo ---------- */
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  height: 100px;
+}
+
+.nav__marca {
+  font-size: 19px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.nav__enlaces {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+
+.nav__enlace {
+  transition: color 0.2s;
+}
+
+.nav__enlace:hover {
+  color: var(--texto);
+}
+
+.nav__contacto {
+  padding: 12px 20px;
+  border: 1px solid var(--linea);
+  font-family: var(--fuente-mono);
+  font-size: 12px;
+  color: var(--texto);
+  white-space: nowrap;
+  transition: border-color 0.2s;
+}
+
+.nav__contacto:hover {
+  border-color: var(--celeste);
+}
+
+.comienzo__cuerpo {
+  display: grid;
+  grid-template-columns: 790fr 434fr;
+  gap: 56px;
+  padding: 64px 0 56px;
+}
+
+.comienzo__intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 28px;
+}
+
+.comienzo__titulo {
+  font-size: clamp(56px, 7.78vw, 112px);
+  font-weight: 800;
+  line-height: 0.96;
+}
+
+.comienzo__relato {
+  max-width: 670px;
+}
+
+.comienzo__accion {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 24px;
+  padding-top: 8px;
+}
+
+.boton {
+  display: inline-flex;
+  align-items: center;
+  gap: 40px;
+  padding: 18px 24px;
+  background: var(--celeste);
+  color: var(--oscuro);
+  font-size: 16px;
+  font-weight: 700;
+  transition: filter 0.2s;
+}
+
+.boton:hover {
+  filter: brightness(1.1);
+}
+
+.boton__flecha {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.comienzo__archivo {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 50px;
+}
+
+.foto--logo {
+  width: 311px;
+  max-width: 72%;
+  aspect-ratio: 311 / 100;
+}
+
+.foto--equipo-sirena {
+  aspect-ratio: 434 / 315;
+}
+
+.comienzo__nota {
+  font-size: 25px;
+  line-height: 1.25;
+}
+
+.recorrido {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 0;
+  border-block: 1px solid var(--linea);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.recorrido__trayecto {
+  font-size: 16px;
+}
+
+/* ---------- 02 · El salto ---------- */
+
+.salto {
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+  padding-block: 96px;
+}
+
+.salto__encabezado {
+  display: flex;
+  align-items: flex-start;
+  gap: 100px;
+}
+
+.salto__encabezado .capitulo {
+  white-space: nowrap;
+}
+
+.salto__titulo {
+  font-size: clamp(36px, 4.44vw, 64px);
+  line-height: 1.02;
+}
+
+.salto__comparacion {
+  display: grid;
+  grid-template-columns: 510fr 1px 641fr;
+  gap: 64px;
+}
+
+.salto__columna {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+
+.salto__columna--antes {
+  color: var(--texto-suave);
+}
+
+.salto__anio {
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+  color: var(--texto-suave);
+}
+
+.salto__anio.color-celeste,
+.salto__anio.color-celeste .mono {
+  color: var(--celeste);
+}
+
+.salto__numero {
+  font-family: var(--fuente-titulo);
+  font-weight: 700;
+  font-size: clamp(56px, 5.56vw, 80px);
+  line-height: 1.17;
+}
+
+.salto__pendiente {
+  min-height: 145px;
+}
+
+.salto__eje {
+  height: 352px;
+  background: var(--linea);
+}
+
+.salto__identidad {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  min-height: 145px;
+}
+
+.foto--logo-chico {
+  width: 280px;
+  flex-shrink: 0;
+  aspect-ratio: 280 / 90;
+}
+
+.salto__tema {
+  font-size: 20px;
+  line-height: 1.3;
+  color: var(--celeste);
+}
+
+/* ---------- 03 · Qué es Sirena ---------- */
+
+.que-es {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  padding-top: 16px;
+  padding-bottom: 96px;
+}
+
+.que-es__cuerpo {
+  display: grid;
+  grid-template-columns: 484fr 700fr;
+  align-items: center;
+  gap: 96px;
+}
+
+.que-es__descripcion {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.que-es__nombre {
+  font-size: clamp(64px, 7.92vw, 114px);
+  font-weight: 800;
+  line-height: 0.95;
+}
+
+.que-es__definicion {
+  font-size: clamp(24px, 2.22vw, 32px);
+  line-height: 1.2;
+  color: var(--verde);
+}
+
+.que-es__visual {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.que-es__pendiente {
+  min-height: 320px;
+}
+
+/* ---------- 04 · Más que una nota ---------- */
+
+.nota {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding-block: 80px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.nota__titulo {
+  font-size: clamp(40px, 5.83vw, 84px);
+  line-height: 1.03;
+}
+
+.nota__cuerpo {
+  display: grid;
+  grid-template-columns: 435fr 640fr;
+  align-items: center;
+  gap: 80px;
+  max-width: 1155px;
+}
+
+.nota__pieza {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.foto--emprender {
+  aspect-ratio: 435 / 196;
+}
+
+.nota__reflexion {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ---------- 05 · Personas ---------- */
+
+.personas {
+  display: grid;
+  grid-template-columns: 624fr 556fr;
+  align-items: center;
+  gap: 100px;
+  padding-block: 96px;
+}
+
+.personas__archivo {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.foto--encuentro {
+  aspect-ratio: 624 / 570;
+}
+
+.personas__texto {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.personas__titulo {
+  font-size: clamp(44px, 5.42vw, 78px);
+  line-height: 1.02;
+}
+
+.personas__pausa {
+  width: 80px;
+  height: 2px;
+  background: var(--arena);
+}
+
+.personas__pendiente {
+  max-width: 490px;
+}
+
+/* ---------- 06 · De lo que hago a lo que soy ---------- */
+
+.puente {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  padding-top: 8px;
+  padding-bottom: 96px;
+}
+
+.puente__cuerpo {
+  display: grid;
+  grid-template-columns: 740fr 440fr;
+  align-items: end;
+  gap: 100px;
+}
+
+.puente__titulo {
+  font-size: clamp(48px, 6.11vw, 88px);
+  line-height: 1.02;
+}
+
+.puente__texto {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 28px;
+  padding-bottom: 8px;
+}
+
+.puente__enlace {
+  font-size: 13px;
+  color: var(--durazno);
+}
+
+/* ---------- 07 · Básquet ---------- */
+
+.basquet {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  padding-top: 24px;
+  padding-bottom: 96px;
+}
+
+.basquet__intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px;
+}
+
+.basquet__intro > div {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.basquet__titulo {
+  font-size: clamp(72px, 11.11vw, 160px);
+  font-weight: 800;
+  line-height: 0.9;
+  white-space: nowrap;
+}
+
+.basquet__bajada {
+  width: 336px;
+  font-size: 25px;
+  line-height: 1.3;
+  color: var(--durazno);
+}
+
+.basquet__juego {
+  display: grid;
+  grid-template-columns: 420fr 496fr 300fr;
+  align-items: start;
+  gap: 32px;
+}
+
+.basquet__accion {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.foto--salto {
+  aspect-ratio: 420 / 671;
+}
+
+.basquet__equipo {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding-top: 72px;
+}
+
+.basquet__equipo figure {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.basquet__declaracion {
+  font-size: clamp(40px, 4.24vw, 61px);
+  line-height: 1.03;
+  color: var(--durazno);
+}
+
+.foto--equipo-basquet {
+  aspect-ratio: 496 / 238;
+}
+
+.basquet__gesto {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.foto--lanzamiento {
+  aspect-ratio: 300 / 464;
+}
+
+.basquet__escudo {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.foto--escudo {
+  width: 128px;
+  flex-shrink: 0;
+  aspect-ratio: 1;
+}
+
+.basquet__detalle {
+  font-size: 11px;
+  line-height: 1.7;
+  color: var(--durazno);
+}
+
+.basquet__lugar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 16px;
+}
+
+.foto--cancha {
+  aspect-ratio: 1280 / 531;
+}
+
+.basquet__epigrafe-cancha {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  font-size: 11px;
+}
+
+/* ---------- 08 · Contacto ---------- */
+
+.contacto {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  padding-top: 8px;
+  padding-bottom: 40px;
+}
+
+.contacto__cuerpo {
+  display: grid;
+  grid-template-columns: 740fr 420fr;
+  align-items: center;
+  gap: 120px;
+}
+
+.contacto__titulo {
+  font-size: clamp(56px, 7.36vw, 106px);
+  font-weight: 800;
+  line-height: 0.98;
+}
+
+.contacto__invitacion {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.contacto__enlace {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px 0;
+  border-bottom: 2px solid var(--naranja);
+  color: var(--naranja);
+  font-size: 28px;
+  font-weight: 500;
+}
+
+a.contacto__enlace:hover .contacto__flecha {
+  transform: translate(4px, -4px);
+}
+
+.contacto__flecha {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1;
+  transition: transform 0.2s;
+}
+
+.pie {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  padding-top: 32px;
+  border-top: 1px solid var(--linea);
+  font-size: 11px;
+}
+
+/* ---------- Pantallas medianas y chicas ---------- */
+
+@media (max-width: 1100px) {
+  :root {
+    --margen: 48px;
+  }
+
+  .comienzo__cuerpo,
+  .salto__comparacion,
+  .que-es__cuerpo,
+  .nota__cuerpo,
+  .personas,
+  .puente__cuerpo,
+  .contacto__cuerpo {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .comienzo__archivo {
+    max-width: 560px;
+    padding-top: 0;
+  }
+
+  .salto__encabezado {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .salto__eje {
+    width: 100%;
+    height: 1px;
+  }
+
+  .basquet__juego {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .basquet__equipo {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --margen: 24px;
+  }
+
+  .hilo {
+    left: 10px;
+  }
+
+  .nav__enlace {
+    display: none;
+  }
+
+  .comienzo__cuerpo {
+    padding-top: 48px;
+  }
+
+  .recorrido {
+    flex-wrap: wrap;
+    white-space: normal;
+  }
+
+  .recorrido__trayecto {
+    display: none;
+  }
+
+  .salto,
+  .personas {
+    padding-block: 64px;
+  }
+
+  .salto__identidad {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .foto--logo-chico {
+    max-width: 100%;
+  }
+
+  .nota {
+    padding-block: 64px;
+  }
+
+  .basquet__intro {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .basquet__bajada {
+    width: auto;
+    font-size: 21px;
+  }
+
+  .basquet__juego {
+    grid-template-columns: 1fr;
+  }
+
+  .relato {
+    font-size: 17px;
+  }
+}
