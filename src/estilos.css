@@ -11,6 +11,10 @@
   --oscuro: #0e1116;
   --linea: rgba(255, 255, 255, 0.15);
 
+  /* Colores de Platense, para la parte de básquet. */
+  --platense: #4a2a1c;
+  --hueso: #f2ebe1;
+
   --fuente-titulo: 'Roboto Condensed', 'Arial Narrow', sans-serif;
   --fuente-texto: 'Space Grotesk', system-ui, sans-serif;
   --fuente-mono: 'JetBrains Mono', ui-monospace, monospace;
@@ -37,10 +41,18 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+::selection {
+  background: var(--celeste);
+  color: var(--oscuro);
+}
+
 h1,
 h2,
+h3,
 p,
-figure {
+figure,
+dl,
+dd {
   margin: 0;
 }
 
@@ -51,6 +63,11 @@ a {
 
 img {
   display: block;
+}
+
+:focus-visible {
+  outline: 2px solid var(--celeste);
+  outline-offset: 4px;
 }
 
 /* ---------- Página ---------- */
@@ -67,6 +84,17 @@ img {
     #35271f 76%,
     #361c16 100%
   );
+}
+
+/* Grano de película sobre toda la página. */
+.pagina::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 .hilo {
@@ -150,6 +178,9 @@ img {
   font-size: 12px;
 }
 
+.color-texto {
+  color: var(--texto);
+}
 .color-celeste {
   color: var(--celeste);
 }
@@ -166,7 +197,7 @@ img {
   color: var(--naranja);
 }
 
-/* ---------- Fotos y lugares reservados ---------- */
+/* ---------- Fotos ---------- */
 
 .foto {
   position: relative;
@@ -192,6 +223,57 @@ img {
 
 .foto:hover img {
   transform: scale(1.04);
+}
+
+.foto__rotulo {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  padding: 6px 10px;
+  background: rgba(14, 17, 22, 0.75);
+  font-family: var(--fuente-mono);
+  font-size: 11px;
+  color: var(--texto);
+  backdrop-filter: blur(6px);
+}
+
+/* Recuadro que ocupa el lugar de una foto que todavía no está. */
+.foto-pendiente {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  padding: 24px;
+  border: 1px dashed rgba(255, 255, 255, 0.22);
+  background:
+    repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.025) 0 12px, transparent 12px 24px),
+    rgba(255, 255, 255, 0.03);
+  color: var(--texto-suave);
+}
+
+.foto-pendiente__etiqueta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--fuente-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+
+.foto-pendiente__texto {
+  max-width: 34ch;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.proximamente__punto {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: latido 2s ease-in-out infinite;
 }
 
 /* Marca de Sirena AI */
@@ -225,72 +307,68 @@ img {
 }
 
 .marca-sirena--grande {
-  width: 311px;
-  max-width: 100%;
-  height: 100px;
-}
-
-.marca-sirena--grande .marca-sirena__nombre {
-  font-size: 36px;
-}
-
-.marca-sirena--chica {
   width: 280px;
   max-width: 100%;
   height: 90px;
-  flex-shrink: 0;
 }
 
-.marca-sirena--chica .marca-sirena__nombre {
+.marca-sirena--grande .marca-sirena__nombre {
   font-size: 32px;
 }
 
-.proximamente {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 20px;
-  width: 100%;
-  padding: 24px;
-  border: 1px dashed var(--linea);
-  background: rgba(255, 255, 255, 0.03);
-  color: var(--texto-suave);
-}
+/* ---------- Cinta de texto ---------- */
 
-.proximamente__estado {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  font-family: var(--fuente-mono);
-  font-size: 11px;
-}
-
-.proximamente__etiqueta {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  letter-spacing: 0.08em;
-}
-
-.proximamente__punto {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: currentColor;
-  animation: latido 2s ease-in-out infinite;
-}
-
-.proximamente__mas {
-  font-size: 22px;
+.marquesina {
+  position: relative;
+  z-index: 2;
+  width: 104%;
+  margin-left: -2%;
+  overflow: hidden;
+  padding: 14px 0;
+  font-family: var(--fuente-titulo);
+  font-weight: 800;
+  font-size: clamp(22px, 2.6vw, 36px);
   line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
-.proximamente__texto {
-  font-size: 16px;
-  line-height: 1.4;
+.marquesina__pista {
+  display: flex;
+  width: max-content;
+  animation: desfile 32s linear infinite;
 }
 
-/* ---------- 01 · Comienzo ---------- */
+.marquesina__tramo {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.marquesina__separador {
+  margin: 0 0.8em;
+  font-size: 0.55em;
+  vertical-align: middle;
+}
+
+.marquesina--sirena {
+  margin-block: 24px 72px;
+  rotate: -1.5deg;
+  background: var(--celeste);
+  color: var(--oscuro);
+}
+
+.marquesina--basquet {
+  margin-block: 0 80px;
+  rotate: 1.5deg;
+  background: var(--hueso);
+  color: var(--platense);
+}
+
+.marquesina--basquet .marquesina__pista {
+  animation-direction: reverse;
+}
+
+/* ---------- Navegación ---------- */
 
 .nav {
   position: sticky;
@@ -325,9 +403,23 @@ img {
 }
 
 .nav__marca {
-  font-size: 19px;
-  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--fuente-titulo);
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
   white-space: nowrap;
+}
+
+.nav__punto {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--celeste);
+  box-shadow: 0 0 0 0 rgba(46, 196, 214, 0.6);
+  animation: senal 2.4s ease-out infinite;
 }
 
 .nav__enlaces {
@@ -370,7 +462,9 @@ img {
   font-size: 12px;
   color: var(--texto);
   white-space: nowrap;
-  transition: border-color 0.2s;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s;
 }
 
 .nav__contacto:hover {
@@ -378,11 +472,23 @@ img {
   background: rgba(46, 196, 214, 0.1);
 }
 
+/* ---------- 01 · Comienzo ---------- */
+
+.comienzo__resplandor {
+  position: absolute;
+  top: -260px;
+  right: -12%;
+  width: 820px;
+  height: 820px;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(46, 196, 214, 0.2) 0%, transparent 62%);
+}
+
 .comienzo__cuerpo {
   display: grid;
-  grid-template-columns: 790fr 434fr;
-  gap: 56px;
-  padding: 64px 0 56px;
+  grid-template-columns: 760fr 460fr;
+  gap: 64px;
+  padding: 64px 0 72px;
 }
 
 .comienzo__intro {
@@ -390,6 +496,25 @@ img {
   flex-direction: column;
   align-items: flex-start;
   gap: 28px;
+  padding-top: 24px;
+}
+
+.comienzo__saludo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 22px;
+  color: var(--texto-suave);
+}
+
+.comienzo__saludo strong {
+  color: var(--texto);
+}
+
+.comienzo__guion {
+  width: 36px;
+  height: 2px;
+  background: var(--celeste);
 }
 
 .comienzo__titulo {
@@ -399,14 +524,14 @@ img {
 }
 
 .comienzo__relato {
-  max-width: 670px;
+  max-width: 640px;
 }
 
 .comienzo__accion {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 24px;
+  gap: 28px;
   padding-top: 8px;
 }
 
@@ -441,20 +566,53 @@ img {
   transition: transform 0.3s var(--suave);
 }
 
-.comienzo__archivo {
+.enlace-secundario {
+  font-size: 11px;
+  transition: color 0.2s;
+}
+
+.enlace-secundario:hover {
+  color: var(--naranja);
+}
+
+/* La foto con la marca de Sirena y el dorsal pegados encima, como un collage. */
+.comienzo__collage {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding-top: 50px;
 }
 
-.foto--equipo-sirena {
-  aspect-ratio: 434 / 315;
+.foto--retrato {
+  aspect-ratio: 4 / 5;
+  box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.7);
 }
 
-.comienzo__nota {
-  font-size: 25px;
-  line-height: 1.25;
+.comienzo__sticker {
+  position: absolute;
+  z-index: 2;
+  left: -48px;
+  bottom: 72px;
+  rotate: -5deg;
+  box-shadow: 0 24px 48px -16px rgba(0, 0, 0, 0.6);
+}
+
+.comienzo__chip {
+  position: absolute;
+  z-index: 2;
+  top: 24px;
+  right: -18px;
+  rotate: 5deg;
+  padding: 10px 14px;
+  background: var(--naranja);
+  color: var(--oscuro);
+  font-size: 13px;
+  font-weight: 700;
+  box-shadow: 0 16px 32px -12px rgba(0, 0, 0, 0.6);
+}
+
+.comienzo__epigrafe {
+  align-self: flex-end;
 }
 
 .recorrido {
@@ -488,8 +646,8 @@ img {
 .salto {
   display: flex;
   flex-direction: column;
-  gap: 44px;
-  padding-block: 96px;
+  gap: 64px;
+  padding-block: 112px 96px;
 }
 
 .salto__encabezado {
@@ -507,62 +665,258 @@ img {
   line-height: 1.02;
 }
 
-.salto__comparacion {
+/* El 3 chico y en contorno, el 4 grande y encendido, unidos por un arco. */
+.brinco {
   display: grid;
-  grid-template-columns: 510fr 1px 641fr;
-  gap: 64px;
+  grid-template-columns: auto minmax(60px, 1fr) auto;
+  align-items: end;
+  gap: clamp(12px, 3vw, 40px);
 }
 
-.salto__columna {
+.brinco__anio {
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  min-width: 0;
+  gap: 16px;
 }
 
-.salto__columna--antes {
-  color: var(--texto-suave);
+.brinco__anio .mono {
+  max-width: 240px;
+  font-size: 11px;
+  line-height: 1.5;
 }
 
-.salto__anio {
-  display: flex;
-  align-items: baseline;
-  gap: 24px;
-  color: var(--texto-suave);
-}
-
-.salto__anio.color-celeste,
-.salto__anio.color-celeste .mono {
-  color: var(--celeste);
-}
-
-.salto__numero {
+.brinco__numero {
   font-family: var(--fuente-titulo);
-  font-weight: 700;
-  font-size: clamp(56px, 5.56vw, 80px);
-  line-height: 1.17;
+  font-weight: 800;
+  line-height: 0.8;
+  letter-spacing: -0.02em;
 }
 
-.salto__pendiente {
-  min-height: 145px;
+.brinco__anio--antes .brinco__numero {
+  font-size: clamp(76px, 12vw, 176px);
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(184, 194, 198, 0.5);
 }
 
-.salto__eje {
-  height: 352px;
-  background: var(--linea);
+.brinco__anio--despues {
+  align-items: flex-end;
+  text-align: right;
 }
 
-.salto__identidad {
-  display: flex;
-  align-items: center;
-  gap: 32px;
-  min-height: 145px;
-}
-
-.salto__tema {
-  font-size: 20px;
-  line-height: 1.3;
+.brinco__anio--despues .brinco__numero {
+  font-size: clamp(116px, 20vw, 300px);
   color: var(--celeste);
+  text-shadow: 0 0 90px rgba(46, 196, 214, 0.35);
+}
+
+.brinco__anio--despues .mono {
+  color: var(--celeste);
+}
+
+.brinco__medio {
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding-top: clamp(8px, 3vw, 48px);
+}
+
+.brinco__rotulo {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+}
+
+.brinco__arco {
+  width: 100%;
+  height: clamp(60px, 11vw, 170px);
+  overflow: visible;
+}
+
+.brinco__arco path {
+  fill: none;
+  stroke: url(#brinco-degrade);
+  stroke-width: 3;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+/* Antes y después: dos capturas encimadas que se comparan arrastrando. */
+.salto__pantallas {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.comparador {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border: 1px solid var(--linea);
+  background: var(--oscuro);
+  cursor: ew-resize;
+  user-select: none;
+  touch-action: pan-y;
+  box-shadow: 0 50px 100px -40px rgba(0, 0, 0, 0.8);
+}
+
+.comparador:has(.comparador__control:focus-visible) {
+  outline: 2px solid var(--celeste);
+  outline-offset: 4px;
+}
+
+.comparador__capa {
+  position: absolute;
+  inset: 0;
+}
+
+.comparador__capa img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.comparador__capa--antes {
+  clip-path: inset(0 calc(100% - var(--pos)) 0 0);
+}
+
+.comparador .foto-pendiente {
+  justify-content: flex-end;
+}
+
+.comparador__capa--antes .foto-pendiente {
+  padding-right: 52%;
+  background:
+    repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.03) 0 12px, transparent 12px 24px),
+    #1c1e22;
+}
+
+.comparador__capa--despues .foto-pendiente {
+  align-items: flex-end;
+  padding-left: 52%;
+  text-align: right;
+  border-color: rgba(46, 196, 214, 0.4);
+  background:
+    radial-gradient(circle at 80% 20%, rgba(46, 196, 214, 0.25), transparent 60%),
+    #0d2a31;
+  color: var(--celeste);
+}
+
+.comparador__etiqueta {
+  position: absolute;
+  z-index: 2;
+  top: 16px;
+  padding: 8px 12px;
+  font-family: var(--fuente-mono);
+  font-size: 11px;
+  pointer-events: none;
+}
+
+.comparador__etiqueta--antes {
+  left: 16px;
+  background: rgba(14, 17, 22, 0.8);
+  color: var(--texto-suave);
+}
+
+.comparador__etiqueta--despues {
+  right: 16px;
+  background: var(--celeste);
+  color: var(--oscuro);
+  font-weight: 700;
+}
+
+.comparador__linea {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  bottom: 0;
+  left: var(--pos);
+  width: 2px;
+  translate: -50% 0;
+  background: var(--celeste);
+  box-shadow: 0 0 24px rgba(46, 196, 214, 0.8);
+  pointer-events: none;
+}
+
+.comparador__manija {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: var(--celeste);
+  color: var(--oscuro);
+  font-size: 22px;
+  font-weight: 700;
+  animation: senal 2.4s ease-out infinite;
+}
+
+.comparador__control {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.salto__pista {
+  text-align: center;
+  letter-spacing: 0.12em;
+}
+
+/* Comparación fila por fila. */
+.tabla {
+  border-top: 1px solid var(--linea);
+}
+
+.tabla__fila {
+  display: grid;
+  grid-template-columns: 220fr 460fr 600fr;
+  align-items: baseline;
+  gap: 32px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--linea);
+}
+
+.tabla__fila--cabecera {
+  padding-block: 14px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+
+.tabla__tema {
+  font-size: 12px;
+}
+
+.tabla__antes {
+  font-size: 18px;
+  line-height: 1.4;
+  color: rgba(184, 194, 198, 0.6);
+}
+
+.tabla__despues {
+  display: flex;
+  gap: 14px;
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--texto);
+}
+
+.tabla__despues::before {
+  content: '→';
+  color: var(--celeste);
+}
+
+.salto__cierre {
+  font-size: clamp(32px, 4.4vw, 64px);
+  line-height: 1.02;
+  padding-top: 16px;
 }
 
 /* ---------- 03 · Qué es Sirena ---------- */
@@ -570,8 +924,7 @@ img {
 .que-es {
   display: flex;
   flex-direction: column;
-  gap: 48px;
-  padding-top: 16px;
+  gap: 64px;
   padding-bottom: 96px;
 }
 
@@ -600,14 +953,83 @@ img {
   color: var(--verde);
 }
 
+.que-es__aporte {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-left: 20px;
+  border-left: 2px solid var(--verde);
+}
+
+.que-es__aporte .relato {
+  color: var(--texto);
+}
+
 .que-es__visual {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.que-es__pendiente {
-  min-height: 320px;
+.foto--proceso {
+  aspect-ratio: 7 / 5;
+}
+
+.pasos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.paso {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 28px;
+  border: 1px solid var(--linea);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* La barra de arriba se completa al pasar el mouse. */
+.paso::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  height: 2px;
+  background: var(--verde);
+  transform: scaleX(0.15);
+  transform-origin: left;
+  transition: transform 0.6s var(--suave);
+}
+
+.paso:hover::before {
+  transform: scaleX(1);
+}
+
+.paso__numero {
+  font-family: var(--fuente-mono);
+  font-size: 12px;
+  color: var(--verde);
+}
+
+.paso__titulo {
+  font-family: var(--fuente-titulo);
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.paso__texto {
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--texto-suave);
 }
 
 /* ---------- 04 · Más que una nota ---------- */
@@ -627,26 +1049,30 @@ img {
 
 .nota__cuerpo {
   display: grid;
-  grid-template-columns: 435fr 640fr;
+  grid-template-columns: 600fr 560fr;
   align-items: center;
   gap: 80px;
-  max-width: 1155px;
 }
 
 .nota__pieza {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
+}
+
+.foto--presentando {
+  aspect-ratio: 4 / 3;
 }
 
 .foto--emprender {
+  max-width: 435px;
   aspect-ratio: 435 / 196;
 }
 
 .nota__reflexion {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
 }
 
 /* ---------- 05 · Personas ---------- */
@@ -660,6 +1086,7 @@ img {
 }
 
 .personas__archivo {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -667,6 +1094,22 @@ img {
 
 .foto--encuentro {
   aspect-ratio: 624 / 570;
+}
+
+.foto--equipo-sirena {
+  aspect-ratio: 747 / 543;
+}
+
+/* La foto del equipo de Sirena, pegada sobre la del encuentro. */
+.personas__inserto {
+  position: absolute;
+  z-index: 2;
+  right: -40px;
+  bottom: 64px;
+  width: 46%;
+  rotate: 3deg;
+  outline: 6px solid #2a2f2b;
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.7);
 }
 
 .personas__texto {
@@ -730,8 +1173,7 @@ img {
 .basquet {
   display: flex;
   flex-direction: column;
-  gap: 48px;
-  padding-top: 24px;
+  gap: 64px;
   padding-bottom: 96px;
 }
 
@@ -753,14 +1195,14 @@ img {
 }
 
 .basquet__titulo {
-  font-size: clamp(72px, 11.11vw, 160px);
+  font-size: clamp(72px, 13vw, 190px);
   font-weight: 800;
   line-height: 0.9;
   white-space: nowrap;
 }
 
 .basquet__bajada {
-  width: 336px;
+  width: 360px;
   font-size: 25px;
   line-height: 1.3;
   color: var(--durazno);
@@ -783,17 +1225,11 @@ img {
   aspect-ratio: 420 / 671;
 }
 
-.basquet__equipo {
+.basquet__centro {
   display: flex;
   flex-direction: column;
   gap: 28px;
-  padding-top: 72px;
-}
-
-.basquet__equipo figure {
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
+  padding-top: 56px;
 }
 
 .basquet__declaracion {
@@ -802,30 +1238,15 @@ img {
   color: var(--durazno);
 }
 
-.foto--equipo-basquet {
-  aspect-ratio: 496 / 238;
-}
-
 .basquet__gesto {
   display: flex;
   flex-direction: column;
   gap: 24px;
+  padding-top: 120px;
 }
 
 .foto--lanzamiento {
   aspect-ratio: 300 / 464;
-}
-
-.basquet__escudo {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.foto--escudo {
-  width: 128px;
-  flex-shrink: 0;
-  aspect-ratio: 1;
 }
 
 .basquet__detalle {
@@ -834,11 +1255,190 @@ img {
   color: var(--durazno);
 }
 
+/* Ficha de jugador, con los colores del club. */
+.ficha {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 20px 22px 22px;
+  border-top: 6px solid var(--platense);
+  background: var(--hueso);
+  color: var(--platense);
+  box-shadow: 0 30px 60px -24px rgba(0, 0, 0, 0.7);
+}
+
+.ficha__cabeza {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.foto--escudo {
+  width: 60px;
+  flex-shrink: 0;
+  aspect-ratio: 1;
+  background: var(--platense);
+}
+
+.ficha__nombre {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.ficha__nombre .mono {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: rgba(74, 42, 28, 0.65);
+}
+
+.ficha__nombre strong {
+  font-family: var(--fuente-titulo);
+  font-size: 24px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.ficha__dorsal {
+  font-family: var(--fuente-titulo);
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 0.8;
+}
+
+.ficha__dorsal::before {
+  content: '#';
+  font-size: 0.45em;
+  vertical-align: top;
+}
+
+.ficha__datos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px 16px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(74, 42, 28, 0.2);
+}
+
+.ficha__datos dt {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(74, 42, 28, 0.65);
+}
+
+.ficha__datos dd {
+  font-weight: 700;
+  font-size: 17px;
+}
+
+/* De la cancha a Sirena. */
+.lecciones {
+  display: grid;
+  grid-template-columns: 440fr 840fr;
+  gap: 64px;
+  padding-block: 56px;
+  border-block: 1px solid var(--linea);
+}
+
+.lecciones__encabezado {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.lecciones__titulo {
+  font-size: clamp(32px, 3.6vw, 52px);
+  line-height: 1.02;
+}
+
+.lecciones__lista {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.leccion {
+  display: grid;
+  grid-template-columns: 56px 300fr 420fr;
+  align-items: baseline;
+  gap: 24px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--linea);
+}
+
+.leccion:first-child {
+  padding-top: 0;
+}
+
+.leccion:last-child {
+  border-bottom: 0;
+}
+
+.leccion__numero {
+  font-family: var(--fuente-mono);
+  font-size: 12px;
+  color: var(--naranja);
+}
+
+.leccion__titulo {
+  font-family: var(--fuente-titulo);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.05;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+
+.leccion:hover .leccion__titulo {
+  color: var(--naranja);
+}
+
+.leccion__texto {
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--texto-suave);
+}
+
+.basquet__equipo {
+  display: grid;
+  grid-template-columns: 860fr 380fr;
+  align-items: center;
+  gap: 56px;
+}
+
+.foto--equipo-basquet {
+  aspect-ratio: 1272 / 612;
+}
+
+.basquet__recuerdo {
+  position: relative;
+  padding-top: 56px;
+}
+
+.basquet__comillas {
+  position: absolute;
+  top: 0;
+  left: -4px;
+  font-family: var(--fuente-titulo);
+  font-size: 140px;
+  font-weight: 800;
+  line-height: 0.75;
+  color: var(--naranja);
+}
+
+.basquet__cita {
+  font-size: 24px;
+  line-height: 1.35;
+  color: var(--texto);
+}
+
 .basquet__lugar {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding-top: 16px;
 }
 
 .foto--cancha {
@@ -905,6 +1505,30 @@ a.contacto__enlace:hover .contacto__flecha {
   transition: transform 0.2s;
 }
 
+.redes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.redes__enlace {
+  display: inline-block;
+  padding: 10px 14px;
+  border: 1px solid var(--linea);
+  color: var(--texto);
+  transition:
+    border-color 0.2s,
+    color 0.2s;
+}
+
+.redes__enlace:hover {
+  border-color: var(--naranja);
+  color: var(--naranja);
+}
+
 .pie__volver {
   color: var(--durazno);
   transition: color 0.2s;
@@ -962,6 +1586,23 @@ a.contacto__enlace:hover .contacto__flecha {
   }
 }
 
+/* Onda que sale de un punto, como una señal. */
+@keyframes senal {
+  0% {
+    box-shadow: 0 0 0 0 rgba(46, 196, 214, 0.55);
+  }
+  70%,
+  100% {
+    box-shadow: 0 0 0 14px rgba(46, 196, 214, 0);
+  }
+}
+
+@keyframes desfile {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 /* Estados iniciales: solo si el JS de animaciones está activo (clase .animado en <html>). */
 .animado [data-aparecer='subir'] {
   opacity: 0;
@@ -997,10 +1638,24 @@ a.contacto__enlace:hover .contacto__flecha {
   transition-delay: var(--retraso, 0ms);
 }
 
-.animado [data-aparecer='eje'] {
-  transform: scaleY(0);
-  transform-origin: top;
-  transition: transform 1.4s var(--suave) 0.2s;
+/* El arco se dibuja y recién después aparece el 4. */
+.animado [data-aparecer='arco'] .brinco__anio--antes {
+  opacity: 0;
+  transition: opacity 0.8s var(--suave);
+}
+
+.animado [data-aparecer='arco'] .brinco__arco {
+  clip-path: inset(-20% 100% -20% 0);
+  transition: clip-path 1.4s var(--suave) 0.4s;
+}
+
+.animado [data-aparecer='arco'] .brinco__anio--despues {
+  opacity: 0;
+  transform: translateY(40px) scale(0.9);
+  transform-origin: right bottom;
+  transition:
+    opacity 1s var(--suave) 1.1s,
+    transform 1.2s var(--suave) 1.1s;
 }
 
 .animado [data-aparecer='recorrido'] > * {
@@ -1037,10 +1692,15 @@ a.contacto__enlace:hover .contacto__flecha {
 .animado [data-aparecer].visible,
 .animado [data-aparecer='titulo'].visible .renglon__texto,
 .animado [data-aparecer='foto'].visible img,
+.animado [data-aparecer='arco'].visible .brinco__anio,
 .animado [data-aparecer='recorrido'].visible > *,
 .animado [data-aparecer='recorrido'].visible .recorrido__linea {
   opacity: 1;
   transform: none;
+}
+
+.animado [data-aparecer='arco'].visible .brinco__arco {
+  clip-path: inset(-20% 0 -20% 0);
 }
 
 .animado [data-aparecer='foto'].visible .velo {
@@ -1078,19 +1738,20 @@ a.contacto__enlace:hover .contacto__flecha {
   }
 
   .comienzo__cuerpo,
-  .salto__comparacion,
   .que-es__cuerpo,
   .nota__cuerpo,
   .personas,
   .puente__cuerpo,
-  .contacto__cuerpo {
+  .contacto__cuerpo,
+  .lecciones,
+  .basquet__equipo {
     grid-template-columns: 1fr;
     gap: 48px;
   }
 
-  .comienzo__archivo {
-    max-width: 560px;
-    padding-top: 0;
+  .comienzo__collage {
+    width: min(100%, 460px);
+    margin-left: 48px;
   }
 
   .salto__encabezado {
@@ -1098,19 +1759,35 @@ a.contacto__enlace:hover .contacto__flecha {
     gap: 20px;
   }
 
-  .salto__eje {
-    width: 100%;
-    height: 1px;
+  .tabla__fila {
+    grid-template-columns: 150fr 1fr 1fr;
+    gap: 20px;
+  }
+
+  .personas__archivo {
+    max-width: 640px;
+  }
+
+  .personas__inserto {
+    right: -16px;
   }
 
   .basquet__juego {
     grid-template-columns: 1fr 1fr;
   }
 
-  .basquet__equipo {
+  .basquet__centro {
     grid-column: 1 / -1;
     grid-row: 1;
     padding-top: 0;
+  }
+
+  .basquet__gesto {
+    padding-top: 0;
+  }
+
+  .ficha {
+    max-width: 440px;
   }
 }
 
@@ -1123,12 +1800,42 @@ a.contacto__enlace:hover .contacto__flecha {
     left: 10px;
   }
 
+  .nav__marca {
+    font-size: 18px;
+  }
+
   .nav__enlace {
     display: none;
   }
 
   .comienzo__cuerpo {
-    padding-top: 48px;
+    padding-top: 40px;
+  }
+
+  .comienzo__saludo {
+    font-size: 19px;
+  }
+
+  .comienzo__collage {
+    margin-left: 0;
+  }
+
+  .comienzo__sticker {
+    left: -8px;
+    bottom: 56px;
+  }
+
+  .marca-sirena--grande {
+    width: 220px;
+    height: 72px;
+  }
+
+  .marca-sirena--grande .marca-sirena__nombre {
+    font-size: 25px;
+  }
+
+  .comienzo__chip {
+    right: -6px;
   }
 
   .recorrido {
@@ -1145,14 +1852,115 @@ a.contacto__enlace:hover .contacto__flecha {
     padding-block: 64px;
   }
 
-  .salto__identidad {
+  .salto {
+    gap: 48px;
+  }
+
+  .brinco__anio--antes .brinco__numero {
+    font-size: 68px;
+    -webkit-text-stroke-width: 1.5px;
+  }
+
+  .brinco__anio--despues .brinco__numero {
+    font-size: 108px;
+  }
+
+  .brinco__anio .mono {
+    max-width: 110px;
+    font-size: 10px;
+  }
+
+  .comparador {
+    aspect-ratio: 4 / 3;
+  }
+
+  .comparador__etiqueta {
+    top: 10px;
+    padding: 6px 8px;
+    font-size: 10px;
+  }
+
+  .comparador__etiqueta--antes {
+    left: 10px;
+  }
+
+  .comparador__etiqueta--despues {
+    right: 10px;
+  }
+
+  .comparador .foto-pendiente {
+    padding: 16px;
+  }
+
+  .comparador__capa--antes .foto-pendiente {
+    padding-right: 54%;
+  }
+
+  .comparador__capa--despues .foto-pendiente {
+    padding-left: 54%;
+  }
+
+  .comparador .foto-pendiente__texto {
+    font-size: 13px;
+  }
+
+  .comparador .foto-pendiente__etiqueta {
+    font-size: 9px;
+  }
+
+  /* En el celular cada fila muestra su tema arriba y los dos años abajo. */
+  .tabla__fila--cabecera {
+    display: none;
+  }
+
+  .tabla__fila {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 20px;
+    padding-block: 20px;
+  }
+
+  .tabla__tema {
+    grid-column: 1 / -1;
+  }
+
+  .tabla__antes,
+  .tabla__despues {
+    display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    gap: 6px;
+    font-size: 16px;
+  }
+
+  .tabla__antes::before,
+  .tabla__despues::before {
+    content: attr(data-etiqueta);
+    font-family: var(--fuente-mono);
+    font-size: 11px;
+    font-weight: 400;
+  }
+
+  .tabla__despues::before {
+    color: var(--celeste);
+  }
+
+  .pasos {
+    grid-template-columns: 1fr;
     gap: 16px;
+  }
+
+  .paso {
+    padding: 22px;
   }
 
   .nota {
     padding-block: 64px;
+  }
+
+  .personas__inserto {
+    right: -8px;
+    bottom: 48px;
+    width: 52%;
+    outline-width: 4px;
   }
 
   .basquet__intro {
@@ -1167,6 +1975,23 @@ a.contacto__enlace:hover .contacto__flecha {
 
   .basquet__juego {
     grid-template-columns: 1fr;
+  }
+
+  .ficha__dorsal {
+    font-size: 52px;
+  }
+
+  .leccion {
+    grid-template-columns: 36px 1fr;
+    gap: 10px 12px;
+  }
+
+  .leccion__texto {
+    grid-column: 2;
+  }
+
+  .leccion__titulo {
+    font-size: 24px;
   }
 
   .relato {

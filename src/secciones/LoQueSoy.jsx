@@ -15,8 +15,8 @@ export default function LoQueSoy() {
         />
         <div className="puente__texto">
           <p className="relato" data-aparecer="subir" style={retraso(300)}>
-            Sirena cuenta una parte de mi historia. Si quiero mostrar un poco más de quién soy,
-            también tengo que hablar de básquet.
+            Sirena cuenta una parte de mi historia. La otra se juega en la cancha, con una pelota
+            naranja y la camiseta de mi club.
           </p>
           <a href="#basquet" className="mono puente__enlace" data-aparecer="subir" style={retraso(450)}>
             DE LA PANTALLA A LA CANCHA <span className="rebote">↓</span>

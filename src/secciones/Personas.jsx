@@ -9,6 +9,7 @@ export default function Personas() {
     <section className="seccion personas">
       <figure className="personas__archivo">
         <Foto imagen={IMAGENES.encuentro} className="foto--encuentro" />
+        <Foto imagen={IMAGENES.equipoSirena} className="foto--equipo-sirena personas__inserto" style={retraso(300)} />
         <figcaption className="epigrafe" data-aparecer="subir" style={retraso(250)}>
           PARTE DEL ARCHIVO / PERSONAS Y MOMENTOS COMPARTIDOS.
         </figcaption>

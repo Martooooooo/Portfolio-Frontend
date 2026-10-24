@@ -1,18 +1,22 @@
 import Foto from '../componentes/Foto.jsx';
 import MarcaSirena from '../componentes/MarcaSirena.jsx';
 import Titulo from '../componentes/Titulo.jsx';
-import { IMAGENES } from '../datos.js';
+import { BASQUET, IMAGENES, NOMBRE_CORTO } from '../datos.js';
 import { retraso } from '../animaciones.js';
 
 export default function Comienzo() {
   return (
     <section className="seccion comienzo" id="inicio">
+      <div className="comienzo__resplandor" aria-hidden="true" />
       <hr className="separador" data-aparecer="linea" />
 
       <div className="comienzo__cuerpo">
         <div className="comienzo__intro">
-          <p className="capitulo color-celeste" data-aparecer="subir">
-            01 / SIRENA · DE 3.º A 4.º AÑO
+          <p className="comienzo__saludo" data-aparecer="subir">
+            <span className="comienzo__guion" aria-hidden="true" />
+            <span>
+              Hola, soy <strong>{NOMBRE_CORTO}</strong>.
+            </span>
           </p>
           <Titulo
             como="h1"
@@ -20,32 +24,34 @@ export default function Comienzo() {
             lineas={['NO FUE SOLO', 'UN CAMBIO', <span className="color-celeste">DE AÑO.</span>]}
           />
           <p className="relato comienzo__relato" data-aparecer="subir" style={retraso(350)}>
-            En 3.º hice un proyecto que no salió como quería. En 4.º construí Sirena: predicción de
-            inundaciones con IA. Y terminó valiendo mucho más que una nota.
+            En 3.º hice un proyecto para el colegio que no servía para nada. En 4.º creé{' '}
+            <strong className="color-texto">Sirena</strong> con mi equipo: predicción de inundaciones
+            con inteligencia artificial. Esta página cuenta ese salto, y lo que hago cuando no estoy
+            con Sirena: jugar al básquet en {BASQUET.club}.
           </p>
           <div className="comienzo__accion" data-aparecer="subir" style={retraso(500)}>
             <a href="#el-salto" className="boton">
-              <span>Conocé el salto</span>
+              <span>Mirá el salto</span>
               <span className="boton__flecha" aria-hidden="true">
                 ↓
               </span>
             </a>
-            <span className="mono texto-11">DESPUÉS, LA CANCHA.</span>
+            <a href="#basquet" className="mono enlace-secundario">
+              O ANDÁ DIRECTO A LA CANCHA →
+            </a>
           </div>
         </div>
 
-        <div className="comienzo__archivo">
-          <MarcaSirena className="marca-sirena--grande" style={retraso(200)} />
-          <Foto imagen={IMAGENES.equipoSirena} className="foto--equipo-sirena" style={retraso(350)} />
-          <p className="epigrafe" data-aparecer="subir" style={retraso(500)}>
-            SIRENA / EL PROYECTO Y SU LADO HUMANO
-          </p>
-          <p className="comienzo__nota" data-aparecer="subir" style={retraso(600)}>
-            Lo que cambió no fue
-            <br />
-            solamente el proyecto.
-          </p>
-        </div>
+        <figure className="comienzo__collage">
+          <Foto imagen={IMAGENES.retrato} className="foto--retrato" style={retraso(150)} />
+          <MarcaSirena className="marca-sirena--grande comienzo__sticker" style={retraso(450)} />
+          <span className="mono comienzo__chip" data-aparecer="subir" style={retraso(650)}>
+            #{BASQUET.dorsal} · {BASQUET.club.toUpperCase()}
+          </span>
+          <figcaption className="epigrafe comienzo__epigrafe" data-aparecer="subir" style={retraso(600)}>
+            ESTUDIANTE · CREADOR DE SIRENA · BASQUETBOLISTA
+          </figcaption>
+        </figure>
       </div>
 
       <div className="mono recorrido" data-aparecer="recorrido">

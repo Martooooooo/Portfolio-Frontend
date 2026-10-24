@@ -16,9 +16,9 @@ export default function MasQueUnaNota() {
       />
       <div className="nota__cuerpo">
         <figure className="nota__pieza">
-          <Foto imagen={IMAGENES.emprender} className="foto--emprender" />
+          <Foto imagen={IMAGENES.presentando} className="foto--presentando" />
           <figcaption className="epigrafe" data-aparecer="subir" style={retraso(200)}>
-            UNA IDEA QUE ACOMPAÑA ESTA HISTORIA.
+            EL DÍA QUE SIRENA DEJÓ DE SER UNA ENTREGA.
           </figcaption>
         </figure>
         <div className="nota__reflexion">
@@ -29,6 +29,7 @@ export default function MasQueUnaNota() {
           <TextoProximamente className="texto-12" demora={300}>
             El momento en que sentí que Sirena dejó de ser solo una entrega.
           </TextoProximamente>
+          <Foto imagen={IMAGENES.emprender} className="foto--emprender" style={retraso(350)} />
         </div>
       </div>
     </section>

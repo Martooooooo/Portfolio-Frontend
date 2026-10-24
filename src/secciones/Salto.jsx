@@ -1,6 +1,6 @@
-import MarcaSirena from '../componentes/MarcaSirena.jsx';
-import { ImagenProximamente } from '../componentes/Proximamente.jsx';
+import Comparador from '../componentes/Comparador.jsx';
 import Titulo from '../componentes/Titulo.jsx';
+import { IMAGENES, SALTO } from '../datos.js';
 import { retraso } from '../animaciones.js';
 
 export default function Salto() {
@@ -13,44 +13,70 @@ export default function Salto() {
         <Titulo className="salto__titulo" lineas={['DE CUMPLIR CON LA ENTREGA', 'A QUERER IR MÁS ALLÁ.']} />
       </div>
 
-      <div className="salto__comparacion">
-        <div className="salto__columna salto__columna--antes">
-          <div className="salto__anio" data-aparecer="subir">
-            <span className="salto__numero">3.º</span>
-            <span className="mono">EL PUNTO DE PARTIDA</span>
-          </div>
-          <p className="relato" data-aparecer="subir" style={retraso(120)}>
-            No fue mi mejor proyecto. Lo miro hoy y veo todo lo que le faltaba, pero también un
-            punto de partida. No lo borraría de esta historia.
-          </p>
-          <ImagenProximamente
-            texto="Captura del proyecto de 3.º año."
-            className="salto__pendiente"
-            demora={240}
-          />
+      {/* El 3 chico y apagado, el 4 grande y encendido: el salto se ve antes de leerlo. */}
+      <div className="brinco" data-aparecer="arco">
+        <div className="brinco__anio brinco__anio--antes">
+          <span className="brinco__numero">3.º</span>
+          <span className="mono">UNA ENTREGA Y NADA MÁS</span>
         </div>
-
-        <div className="salto__eje" data-aparecer="eje" aria-hidden="true" />
-
-        <div className="salto__columna salto__columna--despues">
-          <div className="salto__anio color-celeste" data-aparecer="subir" style={retraso(200)}>
-            <span className="salto__numero">4.º</span>
-            <span className="mono">EL PROYECTO QUE CAMBIÓ TODO</span>
-          </div>
-          <p className="relato" data-aparecer="subir" style={retraso(320)}>
-            Con Sirena el salto fue enorme. Pasé de una entrega que no me convencía a un proyecto
-            que sí me importaba. Esta vez no se trataba solo de aprobar.
-          </p>
-          <div className="salto__identidad">
-            <MarcaSirena className="marca-sirena--chica" style={retraso(440)} />
-            <p className="salto__tema" data-aparecer="subir" style={retraso(560)}>
-              Predicción de
-              <br />
-              inundaciones con IA.
-            </p>
-          </div>
+        <div className="brinco__medio" aria-hidden="true">
+          <span className="mono brinco__rotulo">EL SALTO</span>
+          <svg className="brinco__arco" viewBox="0 0 400 140" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="brinco-degrade" x1="0" x2="1">
+                <stop offset="0" stopColor="#b8c2c6" stopOpacity="0.35" />
+                <stop offset="1" stopColor="#2ec4d6" />
+              </linearGradient>
+            </defs>
+            <path d="M6 134 C 110 -30, 290 -30, 394 40" />
+          </svg>
+        </div>
+        <div className="brinco__anio brinco__anio--despues">
+          <span className="brinco__numero">4.º</span>
+          <span className="mono">SIRENA · PREDICCIÓN DE INUNDACIONES CON IA</span>
         </div>
       </div>
+
+      <div className="salto__pantallas">
+        <Comparador
+          antes={IMAGENES.proyecto3ro}
+          despues={IMAGENES.sirenaApp}
+          etiquetaAntes="3.º · EL PROYECTO DEL COLE"
+          etiquetaDespues="4.º · SIRENA"
+        />
+        <p className="epigrafe salto__pista" data-aparecer="subir" style={retraso(200)}>
+          ← ARRASTRÁ PARA VER EL SALTO →
+        </p>
+      </div>
+
+      <div className="tabla" role="table" aria-label="Comparación entre 3.º y 4.º año">
+        <div className="tabla__fila tabla__fila--cabecera mono" role="row" data-aparecer="subir">
+          <span role="columnheader" className="tabla__tema" />
+          <span role="columnheader">3.º AÑO</span>
+          <span role="columnheader" className="color-celeste">
+            4.º AÑO · SIRENA
+          </span>
+        </div>
+        {SALTO.map((fila, i) => (
+          <div className="tabla__fila" role="row" key={fila.tema} data-aparecer="subir" style={retraso(100 + i * 90)}>
+            <span role="rowheader" className="mono tabla__tema">
+              {fila.tema}
+            </span>
+            <span role="cell" className="tabla__antes" data-etiqueta="3.º">
+              {fila.antes}
+            </span>
+            <span role="cell" className="tabla__despues" data-etiqueta="4.º">
+              {fila.despues}
+            </span>
+          </div>
+        ))}
+      </div>
+
+      <Titulo
+        como="p"
+        className="salto__cierre"
+        lineas={['LA DIFERENCIA NO FUE SABER MÁS.', <span className="color-celeste">FUE QUE ESTA VEZ ME IMPORTABA.</span>]}
+      />
     </section>
   );
 }

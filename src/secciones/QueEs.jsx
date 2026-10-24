@@ -1,11 +1,12 @@
-import { ImagenProximamente, TextoProximamente } from '../componentes/Proximamente.jsx';
+import Foto from '../componentes/Foto.jsx';
+import { TextoProximamente } from '../componentes/Proximamente.jsx';
 import Titulo from '../componentes/Titulo.jsx';
+import { IMAGENES, MI_APORTE, PASOS_SIRENA } from '../datos.js';
 import { retraso } from '../animaciones.js';
 
 export default function QueEs() {
   return (
     <section className="seccion que-es" id="sirena">
-      <hr className="separador" data-aparecer="linea" />
       <div className="que-es__cuerpo">
         <div className="que-es__descripcion">
           <p className="capitulo color-verde" data-aparecer="subir">
@@ -21,22 +22,33 @@ export default function QueEs() {
             Ese fue el desafío de 4.º año. Para mí, Sirena marca la diferencia entre hacer algo para
             entregar y construir algo que siento que importa.
           </p>
-          <TextoProximamente demora={350}>
-            Mi aporte al proyecto y una explicación de cómo funciona.
-          </TextoProximamente>
+          {MI_APORTE ? (
+            <div className="que-es__aporte" data-aparecer="subir" style={retraso(350)}>
+              <span className="mono color-verde">MI PARTE</span>
+              <p className="relato">{MI_APORTE}</p>
+            </div>
+          ) : (
+            <TextoProximamente demora={350}>Qué hice yo en Sirena.</TextoProximamente>
+          )}
         </div>
 
-        <div className="que-es__visual">
-          <ImagenProximamente
-            texto="Captura del mapa de riesgo de Sirena."
-            className="que-es__pendiente"
-            demora={200}
-          />
-          <p className="epigrafe" data-aparecer="subir" style={retraso(300)}>
-            ESPACIO PARA UNA CAPTURA REAL DEL PROYECTO.
-          </p>
-        </div>
+        <figure className="que-es__visual">
+          <Foto imagen={IMAGENES.sirenaProceso} className="foto--proceso" style={retraso(150)} />
+          <figcaption className="epigrafe" data-aparecer="subir" style={retraso(300)}>
+            DETRÁS DE SIRENA / LAS HORAS QUE NO SE VEN.
+          </figcaption>
+        </figure>
       </div>
+
+      <ol className="pasos">
+        {PASOS_SIRENA.map((paso, i) => (
+          <li className="paso" key={paso.titulo} data-aparecer="subir" style={retraso(i * 140)}>
+            <span className="paso__numero">0{i + 1}</span>
+            <h3 className="paso__titulo">{paso.titulo}</h3>
+            <p className="paso__texto">{paso.texto}</p>
+          </li>
+        ))}
+      </ol>
     </section>
   );
 }

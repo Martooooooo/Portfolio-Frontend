@@ -1,5 +1,5 @@
 import Titulo from '../componentes/Titulo.jsx';
-import { CONTACTO } from '../datos.js';
+import { CONTACTO, NOMBRE, REDES } from '../datos.js';
 import { retraso } from '../animaciones.js';
 
 export default function Contacto() {
@@ -11,6 +11,7 @@ export default function Contacto() {
       </span>
     </>
   );
+  const redes = REDES.filter((red) => red.url);
 
   return (
     <section className="seccion contacto" id="contacto">
@@ -22,8 +23,8 @@ export default function Contacto() {
         <Titulo className="contacto__titulo" lineas={['PROYECTOS,', 'BÁSQUET', 'Y LO QUE VIENE.']} />
         <div className="contacto__invitacion">
           <p className="relato" data-aparecer="subir" style={retraso(300)}>
-            De aquel proyecto de 3.º a Sirena. De Sirena a este lado más personal. Gracias por
-            llegar hasta acá. Si algo de esta historia te hizo conectar, hablemos.
+            De aquel proyecto de 3.º a Sirena. De Sirena a la cancha. Gracias por llegar hasta acá.
+            Si algo de esta historia te hizo conectar, hablemos.
           </p>
           {CONTACTO ? (
             <a href={CONTACTO} className="contacto__enlace" data-aparecer="subrayado" style={retraso(450)}>
@@ -39,10 +40,23 @@ export default function Contacto() {
               PRÓXIMAMENTE / Mi mail o enlace de contacto.
             </p>
           )}
+          {redes.length > 0 && (
+            <ul className="redes" data-aparecer="subir" style={retraso(650)}>
+              {redes.map((red) => (
+                <li key={red.nombre}>
+                  <a href={red.url} target="_blank" rel="noreferrer" className="mono redes__enlace">
+                    {red.nombre} ↗
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
       <footer className="mono pie" data-aparecer="subir">
-        <span>UNA HISTORIA PERSONAL / SIRENA → BÁSQUET</span>
+        <span>
+          {NOMBRE.toUpperCase()} / SIRENA → BÁSQUET / {new Date().getFullYear()}
+        </span>
         <a href="#inicio" className="pie__volver">
           VOLVER AL COMIENZO ↑
         </a>
