@@ -1,18 +1,18 @@
 # Imágenes de la landing
 
-Exportalas desde Figma (archivo «Tp moodboard», frame «De Sirena a la cancha · Landing personal») y guardalas acá con estos nombres. El encuadre de cada una ya está en `src/datos.js`; si cambiás el formato (por ejemplo, a `.png`), cambiá también la ruta ahí.
+Cada imagen es la exportación del marco de Figma y cubre su marco entero. Las rutas están en `src/datos.js`.
+Para cambiar una foto, reemplazá el archivo con el mismo nombre. Conviene exportar a 2x para que se vean nítidas.
 
-| Archivo             | Capa de Figma                    | Sección             |
-| ------------------- | -------------------------------- | ------------------- |
-| `sirena-ai.jpg`     | Identidad Sirena AI / Sirena AI  | 01 y 02             |
-| `equipo-sirena.jpg` | Personas detrás del proyecto     | 01 · El comienzo    |
-| `emprender.jpg`     | Emprender como forma de aprender | 04 · Lo que me quedó |
-| `encuentro.jpg`     | Encuentro al aire libre          | 05 · Personas       |
-| `salto-pelota.jpg`  | Salto por la pelota              | 07 · Básquet        |
-| `equipo-basquet.jpg`| Equipo en la cancha              | 07 · Básquet        |
-| `lanzamiento.jpg`   | Lanzamiento al aro               | 07 · Básquet        |
-| `escudo-cap.jpg`    | Escudo CAP completo              | 07 · Básquet        |
-| `cancha.jpg`        | Cancha de básquet                | 07 · Básquet        |
+| Archivo              | Dónde aparece                                 |
+| -------------------- | --------------------------------------------- |
+| `sirena.jpg`         | Marca «Sirena AI» (01 · El comienzo y 02 · El salto) |
+| `equipo-sirena.jpg`  | 01 · El comienzo                              |
+| `emprender.jpg`      | 04 · Lo que me quedó                          |
+| `encuentro.jpg`      | 05 · Personas                                 |
+| `salto-pelota.jpg`   | 07 · Básquet (columna izquierda)              |
+| `equipo-basquet.jpg` | 07 · Básquet (centro)                         |
+| `lanzamiento.jpg`    | 07 · Básquet (columna derecha)                |
+| `escudo-cap.jpg`     | 07 · Básquet (escudo)                         |
+| `cancha.jpg`         | 07 · Básquet (cancha)                         |
 
-Exportá la imagen original (no el recorte del marco): el código la recorta igual que en Figma.
 Si falta un archivo, en su lugar se ve un recuadro oscuro.
