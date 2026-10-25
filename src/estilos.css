@@ -472,6 +472,34 @@ img {
   background: rgba(46, 196, 214, 0.1);
 }
 
+/* Solo aparece en el celular. */
+.nav__menu {
+  display: none;
+  padding: 10px 16px;
+  border: 1px solid var(--linea);
+  background: none;
+  color: var(--texto);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* Para el teclado: aparece al tabular y lleva directo al contenido. */
+.saltar {
+  position: absolute;
+  z-index: 60;
+  top: -60px;
+  left: 16px;
+  padding: 10px 14px;
+  background: var(--celeste);
+  color: var(--oscuro);
+  font-weight: 700;
+  transition: top 0.2s;
+}
+
+.saltar:focus {
+  top: 12px;
+}
+
 /* ---------- 01 · Comienzo ---------- */
 
 .comienzo__resplandor {
@@ -741,127 +769,75 @@ img {
   vector-effect: non-scaling-stroke;
 }
 
-/* Antes y después: dos capturas encimadas que se comparan arrastrando. */
+/* Sirena funcionando, dentro de una ventana de navegador. */
 .salto__pantallas {
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
 
-.comparador {
-  position: relative;
-  aspect-ratio: 16 / 9;
+.pantalla {
   overflow: hidden;
   border: 1px solid var(--linea);
+  border-radius: 12px;
   background: var(--oscuro);
-  cursor: ew-resize;
-  user-select: none;
-  touch-action: pan-y;
   box-shadow: 0 50px 100px -40px rgba(0, 0, 0, 0.8);
 }
 
-.comparador:has(.comparador__control:focus-visible) {
-  outline: 2px solid var(--celeste);
-  outline-offset: 4px;
+.pantalla__barra {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--linea);
+  background: #161b21;
 }
 
-.comparador__capa {
-  position: absolute;
-  inset: 0;
+.pantalla__puntos {
+  display: flex;
+  gap: 7px;
 }
 
-.comparador__capa img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  pointer-events: none;
+.pantalla__puntos span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.16);
 }
 
-.comparador__capa--antes {
-  clip-path: inset(0 calc(100% - var(--pos)) 0 0);
+.pantalla__url {
+  flex: 0 1 340px;
+  overflow: hidden;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  font-size: 11px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
-.comparador .foto-pendiente {
-  justify-content: flex-end;
-}
-
-.comparador__capa--antes .foto-pendiente {
-  padding-right: 52%;
-  background:
-    repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.03) 0 12px, transparent 12px 24px),
-    #1c1e22;
-}
-
-.comparador__capa--despues .foto-pendiente {
-  align-items: flex-end;
-  padding-left: 52%;
-  text-align: right;
-  border-color: rgba(46, 196, 214, 0.4);
-  background:
-    radial-gradient(circle at 80% 20%, rgba(46, 196, 214, 0.25), transparent 60%),
-    #0d2a31;
-  color: var(--celeste);
-}
-
-.comparador__etiqueta {
-  position: absolute;
-  z-index: 2;
-  top: 16px;
-  padding: 8px 12px;
+.pantalla__etiqueta {
+  margin-left: auto;
+  padding: 6px 10px;
+  background: var(--celeste);
+  color: var(--oscuro);
   font-family: var(--fuente-mono);
   font-size: 11px;
-  pointer-events: none;
-}
-
-.comparador__etiqueta--antes {
-  left: 16px;
-  background: rgba(14, 17, 22, 0.8);
-  color: var(--texto-suave);
-}
-
-.comparador__etiqueta--despues {
-  right: 16px;
-  background: var(--celeste);
-  color: var(--oscuro);
   font-weight: 700;
+  white-space: nowrap;
 }
 
-.comparador__linea {
-  position: absolute;
-  z-index: 3;
-  top: 0;
-  bottom: 0;
-  left: var(--pos);
-  width: 2px;
-  translate: -50% 0;
-  background: var(--celeste);
-  box-shadow: 0 0 24px rgba(46, 196, 214, 0.8);
-  pointer-events: none;
+.foto--pantalla {
+  aspect-ratio: 16 / 10;
 }
 
-.comparador__manija {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  display: grid;
-  place-items: center;
-  width: 52px;
-  height: 52px;
-  translate: -50% -50%;
-  border-radius: 50%;
-  background: var(--celeste);
-  color: var(--oscuro);
-  font-size: 22px;
-  font-weight: 700;
-  animation: senal 2.4s ease-out infinite;
+.salto__enlace {
+  color: var(--celeste);
+  transition: color 0.2s;
 }
 
-.comparador__control {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  opacity: 0;
-  pointer-events: none;
+.salto__enlace:hover {
+  color: var(--texto);
 }
 
 .salto__pista {
@@ -971,8 +947,80 @@ img {
   gap: 16px;
 }
 
-.foto--proceso {
-  aspect-ratio: 7 / 5;
+.foto--presentacion {
+  aspect-ratio: 3 / 2;
+}
+
+.boton--verde {
+  align-self: flex-start;
+  background: var(--verde);
+}
+
+.boton--verde:hover {
+  box-shadow: 0 10px 30px -10px rgba(154, 199, 186, 0.6);
+}
+
+/* Con qué está hecha Sirena, dentro de «Mi parte». */
+.stack {
+  display: flex;
+  flex-direction: column;
+  margin-top: 6px;
+  border-top: 1px solid var(--linea);
+}
+
+.stack > div {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--linea);
+}
+
+.stack dt {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.stack dd {
+  font-size: 15px;
+  color: var(--texto);
+}
+
+/* Las cifras de Sirena, en una franja. */
+.cifras {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-block: 1px solid var(--linea);
+}
+
+.cifra {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 28px 24px;
+}
+
+.cifra + .cifra {
+  border-left: 1px solid var(--linea);
+}
+
+.cifra__valor {
+  font-family: var(--fuente-titulo);
+  font-size: clamp(30px, 3.1vw, 44px);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--verde);
+  text-transform: uppercase;
+}
+
+.cifra__texto {
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--texto-suave);
 }
 
 .pasos {
@@ -1003,6 +1051,7 @@ img {
   right: -1px;
   height: 2px;
   background: var(--verde);
+  z-index: 1;
   transform: scaleX(0.15);
   transform-origin: left;
   transition: transform 0.6s var(--suave);
@@ -1010,6 +1059,14 @@ img {
 
 .paso:hover::before {
   transform: scaleX(1);
+}
+
+/* La captura ocupa todo el ancho de arriba de la tarjeta. */
+.foto--paso {
+  width: calc(100% + 56px);
+  margin: -28px -28px 10px;
+  aspect-ratio: 16 / 10;
+  border-bottom: 1px solid var(--linea);
 }
 
 .paso__numero {
@@ -1032,7 +1089,93 @@ img {
   color: var(--texto-suave);
 }
 
-/* ---------- 04 · Más que una nota ---------- */
+/* ---------- 04 · Al campo ---------- */
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+  padding-bottom: 96px;
+}
+
+.campo__encabezado {
+  display: grid;
+  grid-template-columns: 740fr 440fr;
+  align-items: end;
+  gap: 100px;
+}
+
+.campo__intro {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.campo__titulo {
+  font-size: clamp(44px, 5.42vw, 78px);
+  line-height: 1.02;
+}
+
+.campo__lema {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.foto--emprender {
+  max-width: 435px;
+  aspect-ratio: 435 / 196;
+}
+
+/* Cuadros alternados: uno ancho y uno alto por fila, cruzados de una fila a la otra. */
+.campo__galeria {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px 24px;
+}
+
+.campo__pieza {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.campo__pieza--ancha {
+  grid-column: span 2;
+}
+
+.foto--video {
+  aspect-ratio: 16 / 9;
+  box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.7);
+}
+
+.foto video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.foto--charla {
+  aspect-ratio: 16 / 9;
+}
+
+/* Las fotos altas toman la altura del cuadro ancho que tienen al lado. */
+.foto--alta {
+  flex: 1;
+  min-height: 320px;
+}
+
+.foto--escenario img {
+  object-position: 50% 60%;
+}
+
+.foto--encuentro img {
+  object-position: 50% 85%;
+}
+
+/* ---------- 05 · Más que una nota ---------- */
 
 .nota {
   display: flex;
@@ -1064,24 +1207,54 @@ img {
   aspect-ratio: 4 / 3;
 }
 
-.foto--emprender {
-  max-width: 435px;
-  aspect-ratio: 435 / 196;
-}
-
 .nota__reflexion {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-/* ---------- 05 · Personas ---------- */
+/* De la idea de 4.º a la Sirena de hoy: la de hoy, encendida. */
+.versiones {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.version {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 18px 20px;
+  border: 1px solid var(--linea);
+}
+
+.version dd {
+  font-size: 17px;
+  line-height: 1.4;
+  color: var(--texto-suave);
+}
+
+.version--hoy {
+  border-color: var(--verde);
+  background: rgba(154, 199, 186, 0.08);
+}
+
+.version--hoy dt {
+  color: var(--verde);
+}
+
+.version--hoy dd {
+  color: var(--texto);
+  font-weight: 500;
+}
+
+/* ---------- 06 · Personas ---------- */
 
 .personas {
   display: grid;
   grid-template-columns: 624fr 556fr;
   align-items: center;
-  gap: 100px;
+  gap: 80px 100px;
   padding-block: 96px;
 }
 
@@ -1092,15 +1265,20 @@ img {
   gap: 16px;
 }
 
-.foto--encuentro {
-  aspect-ratio: 624 / 570;
+.foto--parque {
+  aspect-ratio: 4 / 5;
 }
 
 .foto--equipo-sirena {
   aspect-ratio: 747 / 543;
 }
 
-/* La foto del equipo de Sirena, pegada sobre la del encuentro. */
+/* Las fotos de noche son verticales: se encuadran en la gente, no en el cielo. */
+.foto--equipo-sirena img {
+  object-position: 50% 100%;
+}
+
+/* La foto de noche, pegada sobre la del Parque de Innovación. */
 .personas__inserto {
   position: absolute;
   z-index: 2;
@@ -1129,11 +1307,50 @@ img {
   background: var(--arena);
 }
 
-.personas__pendiente {
-  max-width: 490px;
+.personas__anecdota {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 520px;
+  margin: 0;
+  padding-left: 20px;
+  border-left: 2px solid var(--arena);
 }
 
-/* ---------- 06 · De lo que hago a lo que soy ---------- */
+.personas__anecdota p {
+  font-size: 21px;
+  line-height: 1.45;
+  color: var(--texto);
+}
+
+.personas__anecdota footer {
+  color: var(--arena);
+}
+
+/* Las otras dos fotos del equipo, debajo y a lo ancho. */
+.personas__fila {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.personas__pieza {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.foto--aula,
+.foto--noche {
+  aspect-ratio: 3 / 2;
+}
+
+.foto--noche img {
+  object-position: 50% 95%;
+}
+
+/* ---------- 07 · De lo que hago a lo que soy ---------- */
 
 .puente {
   display: flex;
@@ -1168,7 +1385,7 @@ img {
   color: var(--durazno);
 }
 
-/* ---------- 07 · Básquet ---------- */
+/* ---------- 08 · Básquet ---------- */
 
 .basquet {
   display: flex;
@@ -1453,7 +1670,7 @@ img {
   font-size: 11px;
 }
 
-/* ---------- 08 · Contacto ---------- */
+/* ---------- 09 · Contacto ---------- */
 
 .contacto {
   display: flex;
@@ -1503,6 +1720,104 @@ a.contacto__enlace:hover .contacto__flecha {
   font-size: 32px;
   line-height: 1;
   transition: transform 0.2s;
+}
+
+/* El recorrido entero, de los 8 años a hoy, pasando por ORT, con la etapa actual encendida. */
+.recorrido-final {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.etapa {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 18px;
+  border-top: 2px solid var(--linea);
+}
+
+.etapa:last-child {
+  border-top-color: var(--naranja);
+}
+
+.etapa__cuando {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--durazno);
+}
+
+.etapa__que {
+  font-size: 16px;
+  line-height: 1.45;
+  color: var(--texto-suave);
+}
+
+.etapa:last-child .etapa__que {
+  color: var(--texto);
+}
+
+.contacto__mail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+}
+
+.contacto__mail > span {
+  font-size: 14px;
+}
+
+.contacto__copiar {
+  padding: 8px 12px;
+  border: 1px solid var(--linea);
+  background: none;
+  color: var(--texto);
+  font-size: 11px;
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    color 0.2s;
+}
+
+.contacto__copiar:hover {
+  border-color: var(--naranja);
+  color: var(--naranja);
+}
+
+.contacto__temas {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.temas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tema {
+  display: inline-block;
+  padding: 8px 14px;
+  border: 1px solid var(--linea);
+  border-radius: 999px;
+  font-size: 14px;
+  color: var(--texto);
+  transition:
+    border-color 0.2s,
+    background-color 0.2s;
+}
+
+.tema:hover {
+  border-color: var(--naranja);
+  background: rgba(255, 90, 31, 0.1);
 }
 
 .redes {
@@ -1739,6 +2054,7 @@ a.contacto__enlace:hover .contacto__flecha {
 
   .comienzo__cuerpo,
   .que-es__cuerpo,
+  .campo__encabezado,
   .nota__cuerpo,
   .personas,
   .puente__cuerpo,
@@ -1762,6 +2078,25 @@ a.contacto__enlace:hover .contacto__flecha {
   .tabla__fila {
     grid-template-columns: 150fr 1fr 1fr;
     gap: 20px;
+  }
+
+  /* Los cuadros anchos ocupan toda la fila y las dos fotos altas quedan juntas. */
+  .campo__galeria {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .foto--alta {
+    flex: none;
+    min-height: 0;
+    aspect-ratio: 4 / 5;
+  }
+
+  .foto--escenario img {
+    object-position: 50% 70%;
+  }
+
+  .foto--encuentro img {
+    object-position: 50% 90%;
   }
 
   .personas__archivo {
@@ -1789,6 +2124,23 @@ a.contacto__enlace:hover .contacto__flecha {
   .ficha {
     max-width: 440px;
   }
+
+  .cifras {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cifra:nth-child(3) {
+    border-left: 0;
+  }
+
+  .cifra:nth-child(n + 3) {
+    border-top: 1px solid var(--linea);
+  }
+
+  .recorrido-final {
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 32px;
+  }
 }
 
 @media (max-width: 640px) {
@@ -1804,8 +2156,89 @@ a.contacto__enlace:hover .contacto__flecha {
     font-size: 18px;
   }
 
+  /* Los enlaces bajan en un panel cuando se abre el menú. */
+  .nav__menu {
+    display: inline-block;
+  }
+
+  .nav__enlaces {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 8px var(--margen) 20px;
+    border-bottom: 1px solid var(--linea);
+    background: rgba(14, 17, 22, 0.96);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    visibility: hidden;
+    opacity: 0;
+    translate: 0 -8px;
+    transition:
+      opacity 0.25s,
+      translate 0.25s var(--suave),
+      visibility 0.25s;
+  }
+
+  .nav--abierto .nav__enlaces {
+    visibility: visible;
+    opacity: 1;
+    translate: 0 0;
+  }
+
+  .nav--abierto {
+    background: rgba(14, 17, 22, 0.96);
+  }
+
   .nav__enlace {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--linea);
+    font-size: 14px;
+  }
+
+  .nav__enlace::after {
     display: none;
+  }
+
+  .nav__contacto {
+    margin-top: 16px;
+    text-align: center;
+  }
+
+  .cifras {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .cifra {
+    padding: 20px 16px;
+  }
+
+  .cifra:nth-child(3) {
+    border-left: 0;
+  }
+
+  .recorrido-final {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .etapa {
+    flex-direction: row;
+    gap: 16px;
+    padding: 14px 0;
+    border-top-width: 1px;
+  }
+
+  .etapa__cuando {
+    flex: 0 0 72px;
+    padding-top: 3px;
+  }
+
+  .etapa__que {
+    font-size: 15px;
   }
 
   .comienzo__cuerpo {
@@ -1870,42 +2303,18 @@ a.contacto__enlace:hover .contacto__flecha {
     font-size: 10px;
   }
 
-  .comparador {
-    aspect-ratio: 4 / 3;
+  .pantalla__barra {
+    gap: 10px;
+    padding: 10px 12px;
   }
 
-  .comparador__etiqueta {
-    top: 10px;
-    padding: 6px 8px;
+  .pantalla__puntos {
+    display: none;
+  }
+
+  .pantalla__etiqueta {
+    padding: 5px 8px;
     font-size: 10px;
-  }
-
-  .comparador__etiqueta--antes {
-    left: 10px;
-  }
-
-  .comparador__etiqueta--despues {
-    right: 10px;
-  }
-
-  .comparador .foto-pendiente {
-    padding: 16px;
-  }
-
-  .comparador__capa--antes .foto-pendiente {
-    padding-right: 54%;
-  }
-
-  .comparador__capa--despues .foto-pendiente {
-    padding-left: 54%;
-  }
-
-  .comparador .foto-pendiente__texto {
-    font-size: 13px;
-  }
-
-  .comparador .foto-pendiente__etiqueta {
-    font-size: 9px;
   }
 
   /* En el celular cada fila muestra su tema arriba y los dos años abajo. */
@@ -1952,6 +2361,26 @@ a.contacto__enlace:hover .contacto__flecha {
     padding: 22px;
   }
 
+  .foto--paso {
+    width: calc(100% + 44px);
+    margin: -22px -22px 8px;
+  }
+
+  .campo {
+    gap: 40px;
+    padding-bottom: 64px;
+  }
+
+  .campo__galeria,
+  .personas__fila {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .campo__pieza--ancha {
+    grid-column: auto;
+  }
+
   .nota {
     padding-block: 64px;
   }
@@ -1996,5 +2425,13 @@ a.contacto__enlace:hover .contacto__flecha {
 
   .relato {
     font-size: 17px;
+  }
+
+  .versiones {
+    grid-template-columns: 1fr;
+  }
+
+  .personas__anecdota p {
+    font-size: 18px;
   }
 }

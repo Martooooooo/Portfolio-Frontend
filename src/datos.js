@@ -9,41 +9,71 @@ export const NOMBRE_CORTO = 'Martín';
 export const IMAGENES = {
   sirena: { src: '/imagenes/sirena.jpg', alt: 'Ilustración de Sirena: una sirena con una baliza' },
 
-  // Nuevas: todavía faltan.
+  // Todavía faltan.
   retrato: {
     src: '/imagenes/retrato.jpg',
     alt: `${NOMBRE_CORTO} presentando Sirena`,
-    pendiente: 'Una foto tuya, vertical: presentando Sirena o con la credencial del evento.',
-  },
-  proyecto3ro: {
-    src: '/imagenes/proyecto-3ro.jpg',
-    alt: 'Captura del proyecto de 3.º año',
-    pendiente: 'Captura del proyecto de 3.º, tal cual era.',
-  },
-  sirenaApp: {
-    src: '/imagenes/sirena-app.jpg',
-    alt: 'Captura de Sirena funcionando',
-    pendiente: 'Captura de Sirena funcionando: el mapa de riesgo o una alerta.',
-  },
-  sirenaProceso: {
-    src: '/imagenes/sirena-proceso.jpg',
-    alt: 'El equipo trabajando en Sirena',
-    pendiente: 'El equipo trabajando en Sirena: compus abiertas, pizarrón, una noche larga.',
-  },
-  presentando: {
-    src: '/imagenes/presentando.jpg',
-    alt: `${NOMBRE_CORTO} presentando Sirena frente al público`,
-    pendiente: 'Vos presentando Sirena frente a un jurado o al público.',
+    pendiente: 'Una foto tuya solo, vertical: presentando Sirena o con la credencial del evento.',
   },
 
-  equipoSirena: { src: '/imagenes/equipo-sirena.jpg', alt: 'El equipo de Sirena, de noche' },
-  emprender: { src: '/imagenes/emprender.jpg', alt: 'Emprender como forma de aprender' },
-  encuentro: { src: '/imagenes/encuentro.jpg', alt: 'Encuentro al aire libre con la bandera argentina' },
-  saltoPelota: { src: '/imagenes/salto-pelota.jpg', alt: 'Salto por la pelota en un partido' },
-  equipoBasquet: { src: '/imagenes/equipo-basquet.jpg', alt: 'El equipo de básquet de Platense en la cancha' },
-  lanzamiento: { src: '/imagenes/lanzamiento.jpg', alt: 'Lanzamiento al aro' },
+  // Capturas de sirena-ai.com.ar.
+  sirenaFlujo: {
+    src: '/imagenes/sirena-flujo.mp4',
+    poster: '/imagenes/sirena-flujo.jpg',
+    alt: 'Video: el flujo de Sirena AI, de marcar un campo en el mapa satelital a recibir la alerta de inundación por mail',
+  },
+  sirenaDeteccion: {
+    src: '/imagenes/sirena-deteccion.webp',
+    alt: 'Sirena AI: el agua detectada por el satélite en cada hectárea del campo',
+  },
+  sirenaPrediccion: {
+    src: '/imagenes/sirena-prediccion.webp',
+    alt: 'Sirena AI: el mapa de probabilidad de inundación a 12 días, con riesgo crítico en el sur del campo',
+  },
+  sirenaAlerta: { src: '/imagenes/sirena-alerta.jpg', alt: 'El mail de alerta crítica de inundación que envía Sirena AI' },
+
+  // Sirena: la primera presentación y TIC x26.
+  aula: { src: '/imagenes/aula.jpg', alt: 'El equipo presentando Sirena AI en el aula, con la ilustración proyectada' },
+  ticEntrevista: {
+    src: '/imagenes/tic-entrevista.webp',
+    alt: 'Entrevista de televisión en el stand de Sirena AI en TIC x26',
+  },
+
+  // Al campo: Emprender como forma de aprender.
+  emprender: { src: '/imagenes/emprender.webp', alt: 'Emprender como forma de aprender' },
+  expoEscenario: {
+    src: '/imagenes/expo-escenario.jpg',
+    alt: 'El equipo en el escenario de la Expo Rural, bajo la pantalla «Emprender como forma de aprender»',
+  },
+  expoCharla: {
+    src: '/imagenes/expo-charla.jpg',
+    alt: 'La charla «Sirena AI: emprender como forma de aprender» en la Expo Rural, en la transmisión de Suma Play',
+  },
+  expoEntrevista: {
+    src: '/imagenes/expo-entrevista.mp4',
+    poster: '/imagenes/expo-entrevista.jpg',
+    alt: 'Video: el equipo entrevistado en la Expo Rural',
+  },
+
+  encuentro: {
+    src: '/imagenes/encuentro.jpg',
+    alt: 'Encuentro en el Ateneo de la Sociedad Rural de Nueve de Julio, con la bandera argentina',
+  },
+
+  // El equipo.
+  parqueInnovacion: {
+    src: '/imagenes/parque-innovacion.jpg',
+    alt: 'El equipo de Sirena en el Parque de Innovación, con las credenciales de TIC x26',
+  },
+  equipoSirena: { src: '/imagenes/equipo-sirena.jpg', alt: 'El equipo de Sirena de noche, con las credenciales de TIC x26' },
+  standSirena: { src: '/imagenes/stand-sirena.jpg', alt: 'El equipo con alguien de Unitree junto a la pantalla con el afiche de Sirena AI, la primera vez que la presentamos' },
+  ticNoche: { src: '/imagenes/tic-noche.jpg', alt: 'El equipo de noche, con las credenciales de TIC x26, bajo un árbol de luces' },
+
+  saltoPelota: { src: '/imagenes/salto-pelota.webp', alt: 'Salto por la pelota en un partido' },
+  equipoBasquet: { src: '/imagenes/equipo-basquet.webp', alt: 'El equipo de básquet de Platense en la cancha' },
+  lanzamiento: { src: '/imagenes/lanzamiento.webp', alt: 'Lanzamiento al aro' },
   escudo: { src: '/imagenes/escudo-cap.jpg', alt: 'Escudo del Club Atlético Platense' },
-  cancha: { src: '/imagenes/cancha.jpg', alt: 'Cancha de básquet de Platense' },
+  cancha: { src: '/imagenes/cancha.webp', alt: 'Cancha de básquet de Platense' },
 };
 
 // 02 · El salto: la comparación fila por fila entre 3.º y 4.º.
@@ -70,25 +100,56 @@ export const SALTO = [
   },
 ];
 
-// 03 · Sirena: cómo funciona, en tres pasos.
+// 03 · Sirena: cómo funciona, en tres pasos (como lo cuenta sirena-ai.com.ar), cada uno con su captura.
 export const PASOS_SIRENA = [
-  { titulo: 'Datos', texto: 'Lluvia, ríos y terreno: lo que pasa antes de que el agua suba.' },
-  { titulo: 'Inteligencia artificial', texto: 'Un modelo que aprende de inundaciones pasadas para reconocer las señales.' },
-  { titulo: 'Alerta', texto: 'Un mapa de riesgo que avisa a tiempo, para anticiparse y no reaccionar tarde.' },
+  {
+    titulo: 'Datos',
+    texto: 'Imágenes de radar satelital, que ven a través de las nubes, detectan el agua en cada hectárea.',
+    imagen: IMAGENES.sirenaDeteccion,
+  },
+  {
+    titulo: 'Inteligencia artificial',
+    texto: 'Un modelo estima la probabilidad de inundación de cada hectárea para los próximos 12 días.',
+    imagen: IMAGENES.sirenaPrediccion,
+  },
+  {
+    titulo: 'Alerta',
+    texto: 'Cuando el riesgo sube, avisa por email con 12 días de anticipación, para actuar antes de que llegue el agua.',
+    imagen: IMAGENES.sirenaAlerta,
+  },
+];
+
+// 03 · Sirena: las cifras que la definen (como las cuenta sirena-ai.com.ar).
+export const SIRENA_URL = 'https://www.sirena-ai.com.ar/';
+export const DATOS_SIRENA = [
+  { cifra: '12 días', texto: 'de anticipación para cada alerta.' },
+  { cifra: '1 ha', texto: 'de detalle: el riesgo de cada hectárea, no del departamento.' },
+  { cifra: 'Radar', texto: 'satelital, que ve el agua a través de las nubes.' },
+  { cifra: 'Carlos Casares', texto: 'la zona que cubre hoy, en la provincia de Buenos Aires.' },
+];
+
+// Con qué está hecha la página de Sirena (lo que se ve en el sitio publicado). Las filas vacías no se muestran.
+export const STACK_SIRENA = [
+  ['Frontend', 'React, React Router'],
+  ['Backend', 'API propia, desplegada en Vercel'],
+  ['Cuentas', 'Inicio de sesión con Google'],
+  ['Mapas', 'Imágenes satelitales de Esri'],
 ];
 
 // Tu aporte a Sirena, en una o dos oraciones. Vacío: se muestra «Próximamente».
-export const MI_APORTE = '';
+export const MI_APORTE =
+  'Hice todo el frontend y el backend de la página de Sirena. Además, di charlas y presentaciones en varios lugares para contar el proyecto.';
 
 // 07 · Básquet. Los datos vacíos no se muestran en la ficha.
 export const BASQUET = {
   club: 'Platense',
   dorsal: '17',
-  posicion: '',
-  categoria: '',
-  desde: '',
+  posicion: 'Ala-pívot',
+  categoria: 'U17',
+  desde: 'Los 8 años',
   // Un recuerdo o anécdota de la cancha. Vacío: se muestra «Próximamente».
-  recuerdo: '',
+  recuerdo:
+    'Nueve años en el mismo club. Ahí aprendí lo que es la disciplina y la dedicación, y ahí están muchos de mis amigos de hace años.',
 };
 
 // Lo que la cancha me enseñó y después usé en Sirena.
@@ -103,16 +164,35 @@ export const LECCIONES = [
   },
   {
     cancha: 'Perder y volver a la cancha',
-    texto: 'Después de una derrota hay otro partido. Después del proyecto de 3.º, vino Sirena.',
+    texto: 'Después de una derrota hay otro partido. En 5.º casi dejamos Sirena, y volvimos a la cancha.',
   },
 ];
 
+// 09 · La historia sigue: el recorrido en una línea por etapa.
+export const RECORRIDO = [
+  { cuando: 'A los 8', que: 'Empiezo a jugar al básquet en Platense. Sigo en el mismo club.' },
+  { cuando: 'Secundaria', que: 'Especialización TIC en ORT Belgrano: Tecnologías de la Información y la Comunicación. En curso.' },
+  { cuando: '3.º año', que: 'Un proyecto para el colegio que no salió del aula.' },
+  { cuando: '4.º año', que: 'Nace Sirena: una predicción de inundaciones por departamento, para toda la Argentina.' },
+  { cuando: '5.º año', que: 'Casi la dejamos. La retomamos hectárea por hectárea, y hago el frontend y el backend.' },
+  { cuando: 'Hoy', que: 'Contamos Sirena en TIC x26, en la Expo Rural y frente a cámara.' },
+];
+
+// Temas para escribirme: cada uno abre el mail con el asunto listo.
+export const TEMAS_CONTACTO = ['Sirena', 'Un proyecto', 'Básquet', 'Otra cosa'];
+
 // Mail o enlace de contacto (por ejemplo, 'mailto:yo@mail.com'). Vacío: se muestra «Próximamente».
-export const CONTACTO = '';
+export const CONTACTO = 'mailto:tinchobiosca.0@gmail.com';
 
 // Redes. Las que quedan vacías no se muestran.
 export const REDES = [
   { nombre: 'Instagram', url: '' },
   { nombre: 'LinkedIn', url: '' },
   { nombre: 'GitHub', url: '' },
+];
+
+// Las redes de Sirena.
+export const REDES_SIRENA = [
+  { nombre: 'Sirena en Instagram', url: 'https://www.instagram.com/sirena.ai_arg/' },
+  { nombre: 'Sirena en LinkedIn', url: 'https://www.linkedin.com/company/sirena-ai-arg' },
 ];

@@ -41,7 +41,7 @@ export default function Basquet() {
       <div className="basquet__intro">
         <div>
           <p className="capitulo color-naranja" data-aparecer="subir">
-            07 / LA OTRA MITAD
+            08 / LA OTRA MITAD
           </p>
           <Titulo className="basquet__titulo" lineas={['BÁSQUET.']} />
         </div>
@@ -65,8 +65,8 @@ export default function Basquet() {
             lineas={['EL EQUIPO.', 'LA CANCHA.', 'LO QUE ME MUEVE.']}
           />
           <p className="relato" data-aparecer="subir" style={retraso(300)}>
-            Entreno y juego en {BASQUET.club}. Es el lugar donde no hay pantallas ni entregas: solo
-            el equipo, la pelota y las ganas de ganar el próximo.
+            Juego en {BASQUET.club} desde los 8 años, siempre en el mismo club. Es el lugar donde no
+            hay pantallas ni entregas: solo el equipo, la pelota y las ganas de ganar el próximo.
           </p>
           <Ficha />
         </div>

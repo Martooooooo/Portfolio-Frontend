@@ -4,6 +4,7 @@ import Navegacion from './componentes/Navegacion.jsx';
 import Comienzo from './secciones/Comienzo.jsx';
 import Salto from './secciones/Salto.jsx';
 import QueEs from './secciones/QueEs.jsx';
+import Campo from './secciones/Campo.jsx';
 import MasQueUnaNota from './secciones/MasQueUnaNota.jsx';
 import Personas from './secciones/Personas.jsx';
 import LoQueSoy from './secciones/LoQueSoy.jsx';
@@ -24,9 +25,10 @@ export default function App() {
       <Salto />
       <Marquesina
         className="marquesina--sirena"
-        items={['Sirena AI', 'Predicción de inundaciones', 'Inteligencia artificial', '4.º año', 'Hecho en equipo']}
+        items={['Sirena AI', 'Predicción de inundaciones', 'Inteligencia artificial', 'Hectárea por hectárea', 'Hecho en equipo']}
       />
       <QueEs />
+      <Campo />
       <MasQueUnaNota />
       <Personas />
       <LoQueSoy />

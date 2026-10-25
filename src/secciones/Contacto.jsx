@@ -1,6 +1,31 @@
+import { useState } from 'react';
 import Titulo from '../componentes/Titulo.jsx';
-import { CONTACTO, NOMBRE, REDES } from '../datos.js';
+import { CONTACTO, NOMBRE, RECORRIDO, REDES, REDES_SIRENA, TEMAS_CONTACTO } from '../datos.js';
 import { retraso } from '../animaciones.js';
+
+// El mail que hay en CONTACTO, si es un enlace «mailto:».
+const MAIL = CONTACTO.startsWith('mailto:') ? CONTACTO.slice('mailto:'.length) : '';
+
+// Copia el mail y avisa unos segundos que quedó copiado.
+function CopiarMail() {
+  const [copiado, setCopiado] = useState(false);
+
+  const copiar = async () => {
+    try {
+      await navigator.clipboard.writeText(MAIL);
+      setCopiado(true);
+      setTimeout(() => setCopiado(false), 2200);
+    } catch {
+      window.location.href = CONTACTO;
+    }
+  };
+
+  return (
+    <button type="button" className="mono contacto__copiar" onClick={copiar} aria-live="polite">
+      {copiado ? 'MAIL COPIADO ✓' : 'COPIAR MAIL'}
+    </button>
+  );
+}
 
 export default function Contacto() {
   const contenido = (
@@ -11,14 +36,25 @@ export default function Contacto() {
       </span>
     </>
   );
-  const redes = REDES.filter((red) => red.url);
+  const redes = [...REDES, ...REDES_SIRENA].filter((red) => red.url);
 
   return (
     <section className="seccion contacto" id="contacto">
       <hr className="separador" data-aparecer="linea" />
       <p className="capitulo color-naranja" data-aparecer="subir">
-        08 / LA HISTORIA SIGUE
+        09 / LA HISTORIA SIGUE
       </p>
+
+      {/* El recorrido entero, para quien llega directo al final. */}
+      <ol className="recorrido-final" aria-label="Mi recorrido">
+        {RECORRIDO.map((etapa, i) => (
+          <li className="etapa" key={etapa.cuando} data-aparecer="subir" style={retraso(i * 110)}>
+            <span className="mono etapa__cuando">{etapa.cuando}</span>
+            <p className="etapa__que">{etapa.que}</p>
+          </li>
+        ))}
+      </ol>
+
       <div className="contacto__cuerpo">
         <Titulo className="contacto__titulo" lineas={['PROYECTOS,', 'BÁSQUET', 'Y LO QUE VIENE.']} />
         <div className="contacto__invitacion">
@@ -33,6 +69,26 @@ export default function Contacto() {
           ) : (
             <div className="contacto__enlace" data-aparecer="subrayado" style={retraso(450)}>
               {contenido}
+            </div>
+          )}
+          {MAIL && (
+            <div className="contacto__mail" data-aparecer="subir" style={retraso(550)}>
+              <span className="mono color-texto">{MAIL}</span>
+              <CopiarMail />
+            </div>
+          )}
+          {MAIL && (
+            <div className="contacto__temas" data-aparecer="subir" style={retraso(600)}>
+              <span className="mono">¿DE QUÉ CHARLAMOS?</span>
+              <ul className="temas">
+                {TEMAS_CONTACTO.map((tema) => (
+                  <li key={tema}>
+                    <a href={`${CONTACTO}?subject=${encodeURIComponent(`${tema} · desde tu página`)}`} className="tema">
+                      {tema}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
           )}
           {!CONTACTO && (

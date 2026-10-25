@@ -1,32 +1,52 @@
 import Foto from '../componentes/Foto.jsx';
-import { TextoProximamente } from '../componentes/Proximamente.jsx';
 import Titulo from '../componentes/Titulo.jsx';
 import { IMAGENES } from '../datos.js';
 import { retraso } from '../animaciones.js';
 
+// Las fotos del equipo de Sirena, todas juntas.
 export default function Personas() {
   return (
     <section className="seccion personas">
       <figure className="personas__archivo">
-        <Foto imagen={IMAGENES.encuentro} className="foto--encuentro" />
+        <Foto imagen={IMAGENES.parqueInnovacion} className="foto--parque" />
         <Foto imagen={IMAGENES.equipoSirena} className="foto--equipo-sirena personas__inserto" style={retraso(300)} />
         <figcaption className="epigrafe" data-aparecer="subir" style={retraso(250)}>
-          PARTE DEL ARCHIVO / PERSONAS Y MOMENTOS COMPARTIDOS.
+          EL EQUIPO / TIC x26, EN EL PARQUE DE INNOVACIÓN.
         </figcaption>
       </figure>
       <div className="personas__texto">
         <p className="capitulo color-arena" data-aparecer="subir">
-          05 / LO QUE NO ES UNA PANTALLA
+          06 / LO QUE NO ES UNA PANTALLA
         </p>
         <Titulo className="personas__titulo" lineas={['TAMBIÉN', 'ME QUEDO CON', 'LAS PERSONAS.']} />
         <p className="relato" data-aparecer="subir" style={retraso(300)}>
-          No quiero contar esta etapa solo desde el proyecto. También quiero dejar lugar para las
-          personas y las experiencias: esa parte más humana que una captura no alcanza a mostrar.
+          Sirena la hicimos en equipo. Detrás de cada versión, de cada charla y de cada presentación
+          hubo personas, y eso es lo que más me llevo de esta etapa.
         </p>
         <div className="personas__pausa" data-aparecer="linea" style={retraso(400)} aria-hidden="true" />
-        <TextoProximamente className="texto-12 personas__pendiente" demora={500}>
-          Una anécdota real de este encuentro y quiénes me acompañaron.
-        </TextoProximamente>
+        <blockquote className="personas__anecdota" data-aparecer="subir" style={retraso(500)}>
+          <p>
+            En 5.º casi dejamos el proyecto. A último momento decidimos retomarlo, porque alguien de
+            Unitree, la empresa de robótica, nos dijo que estaba bueno y nos motivó a seguir. Es el
+            mismo de la foto de la primera vez que presentamos Sirena.
+          </p>
+          <footer className="mono">LA VEZ QUE CASI LARGAMOS</footer>
+        </blockquote>
+      </div>
+
+      <div className="personas__fila">
+        <figure className="personas__pieza">
+          <Foto imagen={IMAGENES.aula} className="foto--aula" />
+          <figcaption className="epigrafe" data-aparecer="subir" style={retraso(200)}>
+            EL EQUIPO / PRESENTANDO EN EL AULA.
+          </figcaption>
+        </figure>
+        <figure className="personas__pieza">
+          <Foto imagen={IMAGENES.ticNoche} className="foto--noche" style={retraso(150)} />
+          <figcaption className="epigrafe" data-aparecer="subir" style={retraso(250)}>
+            TIC x26 / CUANDO SE HIZO DE NOCHE.
+          </figcaption>
+        </figure>
       </div>
     </section>
   );

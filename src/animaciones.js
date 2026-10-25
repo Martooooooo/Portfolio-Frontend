@@ -9,12 +9,12 @@ export function useAnimaciones() {
   useEffect(() => {
     const raiz = document.documentElement;
     const reducido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const elementos = document.querySelectorAll('[data-aparecer]');
 
     let observador;
+    let preparar;
     if (reducido || !('IntersectionObserver' in window)) {
       raiz.classList.remove('animado');
-      elementos.forEach((el) => el.classList.add('visible'));
+      preparar = (el) => el.classList.add('visible');
     } else {
       raiz.classList.add('animado');
       observador = new IntersectionObserver(
@@ -28,8 +28,22 @@ export function useAnimaciones() {
         },
         { rootMargin: '0px 0px -40px 0px', threshold: 0.05 },
       );
-      elementos.forEach((el) => observador.observe(el));
+      preparar = (el) => !el.classList.contains('visible') && observador.observe(el);
     }
+    document.querySelectorAll('[data-aparecer]').forEach(preparar);
+
+    // Lo que se agrega después (por ejemplo, al editar con el servidor de desarrollo abierto)
+    // también tiene que aparecer: si no, quedaría invisible para siempre.
+    const nuevos = new MutationObserver((cambios) => {
+      cambios.forEach((cambio) =>
+        cambio.addedNodes.forEach((nodo) => {
+          if (nodo.nodeType !== Node.ELEMENT_NODE) return;
+          if (nodo.matches('[data-aparecer]')) preparar(nodo);
+          nodo.querySelectorAll('[data-aparecer]').forEach(preparar);
+        }),
+      );
+    });
+    nuevos.observe(document.body, { childList: true, subtree: true });
 
     let pendiente = false;
     const alScrollear = () => {
@@ -48,6 +62,7 @@ export function useAnimaciones() {
 
     return () => {
       observador?.disconnect();
+      nuevos.disconnect();
       window.removeEventListener('scroll', alScrollear);
       window.removeEventListener('resize', alScrollear);
     };

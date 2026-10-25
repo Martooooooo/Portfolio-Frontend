@@ -1,9 +1,12 @@
-import Comparador from '../componentes/Comparador.jsx';
 import Titulo from '../componentes/Titulo.jsx';
 import { IMAGENES, SALTO } from '../datos.js';
 import { retraso } from '../animaciones.js';
 
 export default function Salto() {
+  const video = IMAGENES.sirenaFlujo;
+  // Con «reducir movimiento» activado, el video no arranca solo: se reproduce con los controles.
+  const quieto = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   return (
     <section className="seccion salto" id="el-salto">
       <div className="salto__encabezado">
@@ -37,17 +40,41 @@ export default function Salto() {
         </div>
       </div>
 
-      <div className="salto__pantallas">
-        <Comparador
-          antes={IMAGENES.proyecto3ro}
-          despues={IMAGENES.sirenaApp}
-          etiquetaAntes="3.º · EL PROYECTO DEL COLE"
-          etiquetaDespues="4.º · SIRENA"
-        />
-        <p className="epigrafe salto__pista" data-aparecer="subir" style={retraso(200)}>
-          ← ARRASTRÁ PARA VER EL SALTO →
-        </p>
-      </div>
+      {/* Lo que salió del salto: el flujo de Sirena en video, dentro de una ventana de navegador. */}
+      <figure className="salto__pantallas">
+        <div className="pantalla" data-aparecer="subir">
+          <div className="pantalla__barra" aria-hidden="true">
+            <span className="pantalla__puntos">
+              <span />
+              <span />
+              <span />
+            </span>
+            <span className="mono pantalla__url">sirena-ai.com.ar</span>
+            <span className="pantalla__etiqueta">SIRENA HOY · 5.º</span>
+          </div>
+          <div className="foto foto--pantalla" data-aparecer="foto" style={retraso(150)}>
+            <div className="velo">
+              <video
+                src={video.src}
+                poster={video.poster}
+                aria-label={video.alt}
+                autoPlay={!quieto}
+                controls={quieto}
+                muted
+                loop
+                playsInline
+                preload="metadata"
+              />
+            </div>
+          </div>
+        </div>
+        <figcaption className="epigrafe salto__pista" data-aparecer="subir" style={retraso(250)}>
+          ASÍ FUNCIONA SIRENA HOY: MARCÁS TU CAMPO, LA IA PREDICE EL RIESGO Y TE LLEGA LA ALERTA. /{' '}
+          <a href="https://www.sirena-ai.com.ar/" target="_blank" rel="noreferrer" className="salto__enlace">
+            SIRENA-AI.COM.AR ↗
+          </a>
+        </figcaption>
+      </figure>
 
       <div className="tabla" role="table" aria-label="Comparación entre 3.º y 4.º año">
         <div className="tabla__fila tabla__fila--cabecera mono" role="row" data-aparecer="subir">
