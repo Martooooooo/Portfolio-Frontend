@@ -4,7 +4,10 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
+    "imagenes": "node scripts/tamanos.mjs",
+    "predev": "npm run imagenes",
     "dev": "vite",
+    "prebuild": "npm run imagenes",
     "build": "vite build",
     "preview": "vite preview"
   },
@@ -14,6 +17,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.7.0",
+    "sharp": "^0.33.5",
     "vite": "^6.4.5"
   }
 }

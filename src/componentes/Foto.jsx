@@ -1,10 +1,28 @@
 import { useState } from 'react';
+import tamanos from '../tamanos.json';
 
-// La imagen, o un recuadro que describe qué foto va ahí si todavía no está.
+// Las versiones más chicas de una imagen (las genera `npm run imagenes`),
+// para que cada pantalla baje solo el tamaño que necesita.
+export function versiones(imagen) {
+  const tamano = tamanos[imagen.src];
+  if (!tamano || !imagen.sizes) return {};
+
+  const [ruta, extension] = imagen.src.split(/\.(?=[^.]+$)/);
+  const carpeta = ruta.replace(/[^/]+$/, 'tamanos/');
+  const nombre = ruta.split('/').pop();
+  const srcSet = [
+    ...tamano.versiones.map((ancho) => `${carpeta}${nombre}-${ancho}.${extension} ${ancho}w`),
+    `${imagen.src} ${tamano.ancho}w`,
+  ].join(', ');
+  return { srcSet, sizes: imagen.sizes };
+}
+
+// La imagen; si todavía no está, la de reemplazo o, si no hay, un recuadro que describe qué foto va ahí.
 export function Imagen({ imagen, className = '' }) {
-  const [fallo, setFallo] = useState(false);
+  const [fallos, setFallos] = useState(0);
+  const actual = [imagen, imagen.reemplazo].filter(Boolean)[fallos];
 
-  if (fallo) {
+  if (!actual) {
     return (
       <div className={`foto-pendiente ${className}`}>
         <span className="foto-pendiente__etiqueta">
@@ -18,12 +36,16 @@ export function Imagen({ imagen, className = '' }) {
 
   return (
     <img
-      src={imagen.src}
-      alt={imagen.alt}
+      key={actual.src}
+      src={actual.src}
+      {...versiones(actual)}
+      alt={actual.alt}
       className={className}
-      loading="lazy"
+      loading={imagen.prioridad ? 'eager' : 'lazy'}
+      fetchpriority={imagen.prioridad ? 'high' : undefined}
+      decoding="async"
       draggable="false"
-      onError={() => setFallo(true)}
+      onError={() => setFallos(fallos + 1)}
     />
   );
 }

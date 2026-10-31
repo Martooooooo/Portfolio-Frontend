@@ -24,11 +24,11 @@ export default function Comienzo() {
             lineas={['NO FUE SOLO', 'UN CAMBIO', <span className="color-celeste">DE AÑO.</span>]}
           />
           <p className="relato comienzo__relato" data-aparecer="subir" style={retraso(350)}>
-            En 3.º hice un proyecto para el colegio que no servía para nada. En 4.º creé{' '}
-            <strong className="color-texto">Sirena</strong> con mi equipo, y en 5.º la convertimos en
-            algo real: predicción de inundaciones con inteligencia artificial, hectárea por hectárea.
-            Esta página cuenta ese salto, y lo que hago cuando no estoy con Sirena: jugar al básquet en{' '}
-            {BASQUET.club}.
+            En 3.º hice un proyecto para aprobar la materia. En 4.º creamos{' '}
+            <strong className="color-texto">Sirena</strong> con mi equipo, también para aprobar. En 5.º
+            decidimos profesionalizarla, y terminó significando mucho más que una nota: predicción de
+            inundaciones con inteligencia artificial, hectárea por hectárea. Esta página cuenta ese salto,
+            y lo que hago cuando no estoy con Sirena: jugar al básquet en {BASQUET.club}.
           </p>
           <div className="comienzo__accion" data-aparecer="subir" style={retraso(500)}>
             <a href="#el-salto" className="boton">
@@ -50,20 +50,9 @@ export default function Comienzo() {
             #{BASQUET.dorsal} · {BASQUET.club.toUpperCase()}
           </span>
           <figcaption className="epigrafe comienzo__epigrafe" data-aparecer="subir" style={retraso(600)}>
-            ESTUDIANTE TIC EN ORT · DESARROLLADOR DE SIRENA · ALA-PÍVOT
+            ESTUDIANTE TIC EN ORT BELGRANO · DESARROLLADOR DE SIRENA · ALA-PÍVOT
           </figcaption>
         </figure>
-      </div>
-
-      <div className="mono recorrido" data-aparecer="recorrido">
-        <span>3.º / UNA ENTREGA</span>
-        <span className="recorrido__trayecto" aria-hidden="true">
-          <span className="recorrido__linea" />→
-        </span>
-        <span className="color-celeste">4.º Y 5.º / SIRENA</span>
-        <span>
-          UNA HISTORIA QUE SIGUE <span className="rebote">↓</span>
-        </span>
       </div>
     </section>
   );

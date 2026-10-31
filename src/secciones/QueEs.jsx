@@ -9,9 +9,6 @@ export default function QueEs() {
     <section className="seccion que-es" id="sirena">
       <div className="que-es__cuerpo">
         <div className="que-es__descripcion">
-          <p className="capitulo color-verde" data-aparecer="subir">
-            03 / EL PROYECTO
-          </p>
           <Titulo className="que-es__nombre" lineas={['SIRENA.']} />
           <p className="que-es__definicion" data-aparecer="subir" style={retraso(150)}>
             Predicción de inundaciones
@@ -19,9 +16,9 @@ export default function QueEs() {
             con inteligencia artificial.
           </p>
           <p className="relato" data-aparecer="subir" style={retraso(250)}>
-            Arrancó como el desafío de 4.º año y en 5.º la rehicimos, hectárea por hectárea. Para mí,
-            Sirena marca la diferencia entre hacer algo para entregar y construir algo que siento que
-            importa.
+            Arrancó en 4.º para aprobar la materia y en 5.º decidimos profesionalizarla, hectárea por
+            hectárea. Para mí, Sirena marca la diferencia entre hacer algo para entregar y construir
+            algo que siento que importa.
           </p>
           {MI_APORTE ? (
             <div className="que-es__aporte" data-aparecer="subir" style={retraso(350)}>
@@ -50,7 +47,7 @@ export default function QueEs() {
         <figure className="que-es__visual">
           <Foto imagen={IMAGENES.standSirena} className="foto--presentacion" style={retraso(150)} />
           <figcaption className="epigrafe" data-aparecer="subir" style={retraso(300)}>
-            LA PRIMERA VEZ QUE LA PRESENTAMOS / CON ALGUIEN DE UNITREE, QUE NOS MOTIVÓ A SEGUIR.
+            LA PRIMERA VEZ QUE LA PRESENTAMOS, EN EL COLEGIO / CON ALGUIEN DE UNITREE.
           </figcaption>
         </figure>
       </div>

@@ -39,12 +39,7 @@ export default function Basquet() {
   return (
     <section className="seccion basquet" id="basquet">
       <div className="basquet__intro">
-        <div>
-          <p className="capitulo color-naranja" data-aparecer="subir">
-            08 / LA OTRA MITAD
-          </p>
-          <Titulo className="basquet__titulo" lineas={['BÁSQUET.']} />
-        </div>
+        <Titulo className="basquet__titulo" lineas={['BÁSQUET.']} />
         <p className="basquet__bajada" data-aparecer="subir" style={retraso(250)}>
           Mucho de lo que hice con Sirena lo aprendí primero en la cancha.
         </p>
@@ -65,8 +60,8 @@ export default function Basquet() {
             lineas={['EL EQUIPO.', 'LA CANCHA.', 'LO QUE ME MUEVE.']}
           />
           <p className="relato" data-aparecer="subir" style={retraso(300)}>
-            Juego en {BASQUET.club} desde los 8 años, siempre en el mismo club. Es el lugar donde no
-            hay pantallas ni entregas: solo el equipo, la pelota y las ganas de ganar el próximo.
+            La cancha es el lugar donde no hay pantallas ni entregas: solo el equipo, la pelota y las
+            ganas de ganar el próximo.
           </p>
           <Ficha />
         </div>
@@ -84,12 +79,7 @@ export default function Basquet() {
       </div>
 
       <div className="lecciones">
-        <div className="lecciones__encabezado">
-          <p className="capitulo color-durazno" data-aparecer="subir">
-            DE LA CANCHA A SIRENA
-          </p>
-          <Titulo className="lecciones__titulo" lineas={['LO QUE APRENDÍ JUGANDO', 'Y USÉ CONSTRUYENDO.']} />
-        </div>
+        <Titulo className="lecciones__titulo" lineas={['LO QUE APRENDÍ', 'JUGANDO Y USÉ', 'CONSTRUYENDO.']} />
         <ol className="lecciones__lista">
           {LECCIONES.map((leccion, i) => (
             <li className="leccion" key={leccion.cancha} data-aparecer="subir" style={retraso(i * 140)}>
@@ -121,9 +111,8 @@ export default function Basquet() {
 
       <figure className="basquet__lugar">
         <Foto imagen={IMAGENES.cancha} className="foto--cancha" />
-        <figcaption className="mono basquet__epigrafe-cancha" data-aparecer="subir" style={retraso(250)}>
-          <span className="color-durazno">LA CANCHA / OTRA PARTE DE ESTA HISTORIA</span>
-          <span>ACÁ TAMBIÉN SE APRENDE.</span>
+        <figcaption className="epigrafe" data-aparecer="subir" style={retraso(250)}>
+          LA CANCHA / ACÁ TAMBIÉN SE APRENDE.
         </figcaption>
       </figure>
     </section>

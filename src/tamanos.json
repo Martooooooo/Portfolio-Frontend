@@ -1,0 +1,187 @@
+{
+  "/imagenes/aula.jpg": {
+    "ancho": 1920,
+    "versiones": [
+      120,
+      240,
+      480,
+      800,
+      1200,
+      1600
+    ]
+  },
+  "/imagenes/cancha.webp": {
+    "ancho": 2560,
+    "versiones": [
+      120,
+      240,
+      480,
+      800,
+      1200,
+      1600,
+      2000
+    ]
+  },
+  "/imagenes/encuentro.jpg": {
+    "ancho": 1350,
+    "versiones": [
+      120,
+      240,
+      480,
+      800
+    ]
+  },
+  "/imagenes/equipo-basquet.webp": {
+    "ancho": 1908,
+    "versiones": [
+      120,
+      240,
+      480,
+      800,
+      1200,
+      1600
+    ]
+  },
+  "/imagenes/equipo-sirena.jpg": {
+    "ancho": 1802,
+    "versiones": [
+      120,
+      240,
+      480,
+      800,
+      1200
+    ]
+  },
+  "/imagenes/escudo-cap.jpg": {
+    "ancho": 725,
+    "versiones": [
+      120,
+      240,
+      480
+    ]
+  },
+  "/imagenes/expo-charla.jpg": {
+    "ancho": 1965,
+    "versiones": [
+      120,
+      240,
+      480,
+      800,
+      1200,
+      1600
+    ]
+  },
+  "/imagenes/expo-escenario.jpg": {
+    "ancho": 1350,
+    "versiones": [
+      120,
+      240,
+      480,
+      800
+    ]
+  },
+  "/imagenes/lanzamiento.webp": {
+    "ancho": 1148,
+    "versiones": [
+      120,
+      240,
+      480,
+      800
+    ]
+  },
+  "/imagenes/parque-innovacion.jpg": {
+    "ancho": 1440,
+    "versiones": [
+      120,
+      240,
+      480,
+      800,
+      1200
+    ]
+  },
+  "/imagenes/salto-pelota.webp": {
+    "ancho": 1062,
+    "versiones": [
+      120,
+      240,
+      480,
+      800
+    ]
+  },
+  "/imagenes/sirena-alerta.jpg": {
+    "ancho": 1770,
+    "versiones": [
+      120,
+      240,
+      480,
+      800,
+      1200
+    ]
+  },
+  "/imagenes/sirena-deteccion.webp": {
+    "ancho": 2880,
+    "versiones": [
+      120,
+      240,
+      480,
+      800,
+      1200,
+      1600,
+      2000
+    ]
+  },
+  "/imagenes/sirena-prediccion.webp": {
+    "ancho": 2880,
+    "versiones": [
+      120,
+      240,
+      480,
+      800,
+      1200,
+      1600,
+      2000
+    ]
+  },
+  "/imagenes/sirena.jpg": {
+    "ancho": 1134,
+    "versiones": [
+      120,
+      240,
+      480,
+      800
+    ]
+  },
+  "/imagenes/stand-sirena.jpg": {
+    "ancho": 1920,
+    "versiones": [
+      120,
+      240,
+      480,
+      800,
+      1200,
+      1600
+    ]
+  },
+  "/imagenes/tic-entrevista.webp": {
+    "ancho": 2400,
+    "versiones": [
+      120,
+      240,
+      480,
+      800,
+      1200,
+      1600,
+      2000
+    ]
+  },
+  "/imagenes/tic-noche.jpg": {
+    "ancho": 1802,
+    "versiones": [
+      120,
+      240,
+      480,
+      800,
+      1200
+    ]
+  }
+}

@@ -5,9 +5,6 @@ export default function LoQueSoy() {
   return (
     <section className="seccion puente" id="lo-personal">
       <hr className="separador" data-aparecer="linea" />
-      <p className="capitulo color-durazno" data-aparecer="subir">
-        07 / UN POCO MÁS CERCA
-      </p>
       <div className="puente__cuerpo">
         <Titulo
           className="puente__titulo"

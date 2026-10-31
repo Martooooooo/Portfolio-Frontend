@@ -10,19 +10,11 @@ export default function Campo() {
   return (
     <section className="seccion campo" id="campo">
       <div className="campo__encabezado">
-        <div className="campo__intro">
-          <p className="capitulo color-verde" data-aparecer="subir">
-            04 / AL CAMPO
-          </p>
-          <Titulo className="campo__titulo" lineas={['SIRENA SALIÓ', <span className="color-verde">AL CAMPO.</span>]} />
-        </div>
-        <div className="campo__lema">
-          <p className="relato" data-aparecer="subir" style={retraso(250)}>
-            Con Sirena salimos del aula y fuimos al campo: dimos charlas en la Expo Rural para contar que
-            emprender también es una forma de aprender.
-          </p>
-          <Foto imagen={IMAGENES.emprender} className="foto--emprender" style={retraso(350)} />
-        </div>
+        <Titulo className="campo__titulo" lineas={['SIRENA SALIÓ', <span className="color-verde">AL CAMPO.</span>]} />
+        <p className="relato" data-aparecer="subir" style={retraso(250)}>
+          Gracias a Sirena salimos del aula y fuimos a la Expo Rural de 9 de Julio, a contar que
+          emprender también es una forma de aprender.
+        </p>
       </div>
 
       {/* Cuadros alternados: el video con el escenario al lado y, debajo, el Ateneo con la charla. */}

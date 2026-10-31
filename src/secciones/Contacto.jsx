@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Titulo from '../componentes/Titulo.jsx';
-import { CONTACTO, NOMBRE, RECORRIDO, REDES, REDES_SIRENA, TEMAS_CONTACTO } from '../datos.js';
+import { CONTACTO, NOMBRE, REDES, REDES_SIRENA, TEMAS_CONTACTO } from '../datos.js';
 import { retraso } from '../animaciones.js';
 
 // El mail que hay en CONTACTO, si es un enlace «mailto:».
@@ -41,26 +41,14 @@ export default function Contacto() {
   return (
     <section className="seccion contacto" id="contacto">
       <hr className="separador" data-aparecer="linea" />
-      <p className="capitulo color-naranja" data-aparecer="subir">
-        09 / LA HISTORIA SIGUE
-      </p>
-
-      {/* El recorrido entero, para quien llega directo al final. */}
-      <ol className="recorrido-final" aria-label="Mi recorrido">
-        {RECORRIDO.map((etapa, i) => (
-          <li className="etapa" key={etapa.cuando} data-aparecer="subir" style={retraso(i * 110)}>
-            <span className="mono etapa__cuando">{etapa.cuando}</span>
-            <p className="etapa__que">{etapa.que}</p>
-          </li>
-        ))}
-      </ol>
 
       <div className="contacto__cuerpo">
         <Titulo className="contacto__titulo" lineas={['PROYECTOS,', 'BÁSQUET', 'Y LO QUE VIENE.']} />
         <div className="contacto__invitacion">
           <p className="relato" data-aparecer="subir" style={retraso(300)}>
-            De aquel proyecto de 3.º a Sirena. De Sirena a la cancha. Gracias por llegar hasta acá.
-            Si algo de esta historia te hizo conectar, hablemos.
+            De aquel proyecto de 3.º a Sirena. De Sirena a la cancha. Y esto recién empieza: el año
+            que viene buscamos tener los primeros clientes. Si algo de esta historia te hizo conectar,
+            hablemos.
           </p>
           {CONTACTO ? (
             <a href={CONTACTO} className="contacto__enlace" data-aparecer="subrayado" style={retraso(450)}>

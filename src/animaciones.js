@@ -60,11 +60,21 @@ export function useAnimaciones() {
     window.addEventListener('scroll', alScrollear, { passive: true });
     window.addEventListener('resize', alScrollear);
 
+    // Al imprimir o guardar en PDF tiene que salir todo, aunque no se haya bajado hasta ahí.
+    const alImprimir = () => {
+      document.querySelectorAll('[data-aparecer]').forEach((el) => el.classList.add('visible'));
+      document.querySelectorAll('img[loading="lazy"]').forEach((img) => {
+        img.loading = 'eager';
+      });
+    };
+    window.addEventListener('beforeprint', alImprimir);
+
     return () => {
       observador?.disconnect();
       nuevos.disconnect();
       window.removeEventListener('scroll', alScrollear);
       window.removeEventListener('resize', alScrollear);
+      window.removeEventListener('beforeprint', alImprimir);
     };
   }, []);
 }
