@@ -21,10 +21,10 @@ const EXPO_ESCENARIO = {
 export const IMAGENES = {
   sirena: { src: '/imagenes/sirena.jpg', alt: 'Ilustración de Sirena: una sirena con una baliza', sizes: '100px' },
 
-  // Todavía falta: es la foto grande del comienzo.
+  // La foto grande del comienzo.
   retrato: {
     src: '/imagenes/retrato.jpg',
-    alt: `${NOMBRE_CORTO} presentando Sirena`,
+    alt: `Retrato de ${NOMBRE}`,
     sizes: medida('460px', '460px'),
     prioridad: true,
     reemplazo: { ...EXPO_ESCENARIO, sizes: medida('460px', '460px') },

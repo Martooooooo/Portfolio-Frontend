@@ -99,6 +99,17 @@
       1200
     ]
   },
+  "/imagenes/retrato.jpg": {
+    "ancho": 2340,
+    "versiones": [
+      120,
+      240,
+      480,
+      800,
+      1200,
+      1600
+    ]
+  },
   "/imagenes/salto-pelota.webp": {
     "ancho": 1062,
     "versiones": [

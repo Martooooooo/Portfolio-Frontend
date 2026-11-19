@@ -44,11 +44,14 @@ export default function Comienzo() {
         </div>
 
         <figure className="comienzo__collage">
-          <Foto imagen={IMAGENES.retrato} className="foto--retrato" style={retraso(150)} />
-          <MarcaSirena className="marca-sirena--grande comienzo__sticker" style={retraso(450)} />
-          <span className="mono comienzo__chip" data-aparecer="subir" style={retraso(650)}>
-            #{BASQUET.dorsal} · {BASQUET.club.toUpperCase()}
-          </span>
+          {/* La marca y el dorsal se ubican respecto de la foto, no del epígrafe. */}
+          <div className="comienzo__marco">
+            <Foto imagen={IMAGENES.retrato} className="foto--retrato" style={retraso(150)} />
+            <MarcaSirena className="marca-sirena--grande comienzo__sticker" style={retraso(450)} />
+            <span className="mono comienzo__chip" data-aparecer="subir" style={retraso(650)}>
+              #{BASQUET.dorsal} · {BASQUET.club.toUpperCase()}
+            </span>
+          </div>
           <figcaption className="epigrafe comienzo__epigrafe" data-aparecer="subir" style={retraso(600)}>
             ESTUDIANTE TIC EN ORT BELGRANO · DESARROLLADOR DE SIRENA · ALA-PÍVOT
           </figcaption>

@@ -5,20 +5,13 @@ Para cambiar una foto, reemplazá el archivo con el mismo nombre. Conviene usar 
 
 La carpeta `tamanos/` se genera sola al correr `npm run dev` o `npm run build` (o a mano con `npm run imagenes`): son versiones más chicas de cada foto para que cada pantalla baje solo lo que necesita. No hace falta tocarla.
 
-## Falta
-
-| Archivo       | Dónde aparece                  | Qué foto va                                                  | Formato      |
-| ------------- | ------------------------------ | ------------------------------------------------------------ | ------------ |
-| `retrato.jpg` | 01 · Comienzo (la foto grande) | Vos solo, presentando Sirena o con la credencial del evento. | Vertical 4:5 |
-
-Mientras no esté, ahí se muestra `expo-escenario.jpg`. Cuando subas el archivo, aparece solo.
-
 Las capturas de Sirena (`sirena-*`) salen de sirena-ai.com.ar.
 
 ## Ya están
 
 | Archivo                  | Dónde aparece                                                     |
 | ------------------------ | ----------------------------------------------------------------- |
+| `retrato.jpg`            | 01 · Comienzo (la foto grande, vertical 4:5)                      |
 | `sirena.jpg`             | Marca «Sirena AI» (sticker del comienzo)                          |
 | `sirena-flujo.mp4`       | 02 · El salto (video del flujo; `sirena-flujo.jpg` es su portada) |
 | `sirena-deteccion.webp`  | 03 · Sirena (paso 01, Datos)                                      |

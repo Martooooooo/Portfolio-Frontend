@@ -583,6 +583,10 @@ img {
   gap: 16px;
 }
 
+.comienzo__marco {
+  position: relative;
+}
+
 .foto--retrato {
   aspect-ratio: 4 / 5;
   box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.7);
@@ -596,7 +600,7 @@ img {
   position: absolute;
   z-index: 2;
   left: -48px;
-  bottom: 96px;
+  bottom: 48px;
   rotate: -5deg;
   box-shadow: 0 24px 48px -16px rgba(0, 0, 0, 0.6);
 }
@@ -2040,7 +2044,7 @@ a.contacto__enlace:hover .contacto__flecha {
 
   .comienzo__sticker {
     left: -8px;
-    bottom: 84px;
+    bottom: 24px;
   }
 
   .marca-sirena--grande {
